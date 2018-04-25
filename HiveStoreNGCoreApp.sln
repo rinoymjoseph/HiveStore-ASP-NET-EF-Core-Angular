@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiveStoreNGCoreApp.Web", "HiveStoreNGCoreApp.Web\HiveStoreNGCoreApp.Web.csproj", "{CF9D6481-E6DB-4491-B612-6E9198AF7AD9}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiveStore.Entity", "HiveStore.Entity\HiveStore.Entity.csproj", "{3DD0F5A2-29E0-407B-9D3E-22F094F320F3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiveStore.DataAccess", "HiveStore.DataAccess\HiveStore.DataAccess.csproj", "{8A19E6BA-DA7A-4AA1-8A7D-751238325375}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{CF9D6481-E6DB-4491-B612-6E9198AF7AD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF9D6481-E6DB-4491-B612-6E9198AF7AD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF9D6481-E6DB-4491-B612-6E9198AF7AD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DD0F5A2-29E0-407B-9D3E-22F094F320F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DD0F5A2-29E0-407B-9D3E-22F094F320F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DD0F5A2-29E0-407B-9D3E-22F094F320F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DD0F5A2-29E0-407B-9D3E-22F094F320F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A19E6BA-DA7A-4AA1-8A7D-751238325375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A19E6BA-DA7A-4AA1-8A7D-751238325375}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A19E6BA-DA7A-4AA1-8A7D-751238325375}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A19E6BA-DA7A-4AA1-8A7D-751238325375}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
