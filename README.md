@@ -2,9 +2,9 @@
 
 1) You need Visual Studio 2017 to run this application.
 
-2)Please refer below link to understand more about application architecture and db structure.
+2) Please refer below link to understand more about application architecture and db structure.
 
-http://hive.rinoy.in/building-a-web-app-using-asp-net-core-2-and-angular5-frameworks/
+    http://hive.rinoy.in/building-a-web-app-using-asp-net-core-2-and-angular5-frameworks/
 
 3) Execute the script 'hive_db_create.sql' in DB-Scripts folder to create Schema and Tables.
 
