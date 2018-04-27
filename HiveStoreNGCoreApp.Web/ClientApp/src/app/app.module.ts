@@ -12,6 +12,11 @@ import {
   MatCheckboxModule,
 } from '@angular/material';
 
+import { InputTextModule } from 'primeng/inputtext';
+import { ListboxModule } from 'primeng/listbox';
+import { CheckboxModule } from 'primeng/checkbox';
+import { ButtonModule } from 'primeng/button';
+
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { EmployeeComponent } from './employee/employee.component';
@@ -31,6 +36,10 @@ import { EmployeeComponent } from './employee/employee.component';
     MatButtonModule,
     MatInputModule,
     MatCheckboxModule,
+    InputTextModule,
+    ListboxModule,
+    CheckboxModule,
+    ButtonModule,
     RouterModule.forRoot([
       { path: '', component: EmployeeComponent, pathMatch: 'full' },
       { path: 'employee', component: EmployeeComponent }

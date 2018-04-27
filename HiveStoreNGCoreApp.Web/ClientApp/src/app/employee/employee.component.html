@@ -1,30 +1,51 @@
 <div class="panel panel-info">
   <div class="panel-heading">Employee</div>
   <div class="panel-body">
-    <div class="row">
-      <div class="col-md-3">
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="First Name">
-        </mat-form-field>
+    <form [formGroup]="formEmployee">
+      <div class="row">
+        <div class="col-sm-6 col-md-6">
+          <mat-input-container>
+            <input matInput placeholder="First Name" formControlName="ipFirstName" matTooltip="First Name" required>
+            <mat-error>First Name is required</mat-error>
+          </mat-input-container>
+        </div>
+        <div class="col-sm-6 col-md-6">
+          <mat-input-container>
+            <input matInput placeholder="Last Name" formControlName="ipLastName" matTooltip="Last Name" required>
+            <mat-error>Last Name is required</mat-error>
+          </mat-input-container>
+        </div>
       </div>
-      <div class="col-md-3">
-        <mat-form-field>
-          <mat-select placeholder="Favorite food">
-            <mat-option>Pasta</mat-option>
-            <mat-option>Ice Cream</mat-option>
-            <mat-option>Pizza</mat-option>
-          </mat-select>
-        </mat-form-field>
+      <div class="row">
+        <div class="col-sm-6 col-md-6">
+          <mat-input-container>
+            <input matInput placeholder="Country" formControlName="ipCountry" matTooltip="Country" required>
+            <mat-error>Country is required</mat-error>
+          </mat-input-container>
+        </div>
+        <div class="col-sm-6 col-md-6">
+          <mat-input-container>
+            <input matInput placeholder="City" formControlName="ipCity" matTooltip="City" required>
+            <mat-error>City is required</mat-error>
+          </mat-input-container>
+        </div>
       </div>
-      <div class="col-md-3" style="margin-top:15px">
-        <mat-checkbox>Check me!</mat-checkbox>
+      <div class="top-buffer-20"></div>
+      <div class="row">
+        <div class="col-sm-6">
+          <button id="btnSave" mat-raised-button name="btnSave" color="primary" (click)="btnSaveClick($event)">Save</button>
+          <button id="btnCancel" mat-raised-button name="btnCancel" (click)="btnCancelClick($event)">Cancel</button>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-3">
-        <button mat-raised-button color="primary">Save</button>
-      </div>
-    </div>
+    </form>
+  </div>
+  <div class="panel-body">
+    <p-dataTable [value]="employees" [rowStyleClass]="getRowStyle" [loading]="loading">
+      <p-column field="FirstName" header="FirstName"></p-column>
+      <p-column field="LastName" header="LastName"></p-column>
+      <p-column field="City" header="City"></p-column>
+      <p-column field="Country" header="Country"></p-column>
+    </p-dataTable>
   </div>
 </div>
 
