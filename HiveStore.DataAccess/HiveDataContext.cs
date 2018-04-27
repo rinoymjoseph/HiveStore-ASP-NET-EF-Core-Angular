@@ -18,10 +18,15 @@ namespace HiveStore.DataAccess
         public DbSet<OrderEntity> Orders { get; set; }
         public DbSet<OrderDetailsEntity> OrderDetails { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public HiveDataContext(DbContextOptions<HiveDataContext> options)
+  : base(options)
         {
-            optionsBuilder.UseSqlServer(@"Server=LIN35005716\SQLEXPRESS;Database=Hive;Trusted_Connection=True");
         }
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(@"Server=LIN35005716\SQLEXPRESS;Database=Hive;Trusted_Connection=True");
+        //}
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

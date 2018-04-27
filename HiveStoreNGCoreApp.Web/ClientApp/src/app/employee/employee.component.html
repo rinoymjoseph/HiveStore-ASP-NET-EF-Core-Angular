@@ -40,12 +40,24 @@
     </form>
   </div>
   <div class="panel-body">
-    <p-dataTable [value]="employees" [rowStyleClass]="getRowStyle" [loading]="loading">
-      <p-column field="FirstName" header="FirstName"></p-column>
-      <p-column field="LastName" header="LastName"></p-column>
-      <p-column field="City" header="City"></p-column>
-      <p-column field="Country" header="Country"></p-column>
-    </p-dataTable>
+    <p-table [value]="employees" [paginator]="true" [rows]="10">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>FirstName</th>
+          <th>LastName</th>
+          <th>City</th>
+          <th>Country</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-emp>
+        <tr>
+          <td>{{emp.FirstName}}</td>
+          <td>{{emp.LastName}}</td>
+          <td>{{emp.City}}</td>
+          <td>{{emp.Country}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
   </div>
 </div>
 
