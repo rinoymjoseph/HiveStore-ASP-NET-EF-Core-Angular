@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiveStore.Entity", "HiveSto
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiveStore.DataAccess", "HiveStore.DataAccess\HiveStore.DataAccess.csproj", "{8A19E6BA-DA7A-4AA1-8A7D-751238325375}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "HiveStore.Database", "HiveStore.Database\HiveStore.Database.sqlproj", "{18F364CC-AD7E-4634-BFC4-149A6C3FC042}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,12 @@ Global
 		{8A19E6BA-DA7A-4AA1-8A7D-751238325375}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A19E6BA-DA7A-4AA1-8A7D-751238325375}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A19E6BA-DA7A-4AA1-8A7D-751238325375}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18F364CC-AD7E-4634-BFC4-149A6C3FC042}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18F364CC-AD7E-4634-BFC4-149A6C3FC042}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18F364CC-AD7E-4634-BFC4-149A6C3FC042}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{18F364CC-AD7E-4634-BFC4-149A6C3FC042}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18F364CC-AD7E-4634-BFC4-149A6C3FC042}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18F364CC-AD7E-4634-BFC4-149A6C3FC042}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

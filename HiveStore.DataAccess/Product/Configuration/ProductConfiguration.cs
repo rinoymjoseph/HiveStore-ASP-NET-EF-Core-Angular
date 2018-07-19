@@ -15,7 +15,7 @@ namespace HiveStore.DataAccess.Product.Configuration
 
             builder.Property(p => p.Id).HasColumnName("PRODUCT_ID");
             builder.Property(p => p.ProductName).HasColumnName("PRODUCT_NAME").HasMaxLength(200).IsRequired();
-            builder.Property(p => p.UnitPrice).HasColumnName("UNIT_PRICE");
+            builder.Property(p => p.UnitPrice).HasColumnName("UNIT_PRICE").IsRequired();
 
             ConfigureBase(builder);
         }
