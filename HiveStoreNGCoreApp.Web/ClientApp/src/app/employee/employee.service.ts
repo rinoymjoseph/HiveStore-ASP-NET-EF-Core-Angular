@@ -27,4 +27,14 @@ export class EmployeeService extends BaseService {
       .map((res: BaseResponse) => this.extractData(res))
       .catch((res: HttpErrorResponse) => this.handleError(res));
   }
+
+  testFileTransfer(formData1: FormData): Observable<string> {
+    const httpOptions = {
+      headers: new HttpHeaders()
+    };
+    const testFileTransferURL = AppSettings.TEST_FILE_TRANSFER;
+    return this.http.post<BaseResponse>(testFileTransferURL, formData1, httpOptions)
+      .map((res: BaseResponse) => this.extractData(res))
+      .catch((res: HttpErrorResponse) => this.handleError(res));
+  }
 }

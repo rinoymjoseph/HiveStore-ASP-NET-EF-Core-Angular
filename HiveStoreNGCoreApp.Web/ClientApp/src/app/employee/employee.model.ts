@@ -3,4 +3,5 @@ export class Employee {
   LastName: string;
   City: string;
   Country: string;
+  Id: number;
 }

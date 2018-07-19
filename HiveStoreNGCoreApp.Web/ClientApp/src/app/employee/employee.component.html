@@ -1,6 +1,9 @@
+<div class="loading" *ngIf="isLoading">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
 <div class="panel panel-info">
-  <div class="panel-heading">Employee</div>
-  <div class="panel-body">
+  <div class="panel-heading">Add/Edit Employee</div>
+  <div class="panel-body" id="divPrint">
     <form [formGroup]="formEmployee">
       <div class="row">
         <div class="col-sm-6 col-md-6">
@@ -39,10 +42,16 @@
       </div>
     </form>
   </div>
+</div>
+
+<div class="panel panel-info">
+  <div class="panel-heading">All Employees</div>
   <div class="panel-body">
-    <p-table [value]="employees" [paginator]="true" [rows]="10">
+    <p-table [value]="employees" [paginator]="true" [rows]="10" dataKey="Id" [(selection)]="selectedEmployee" selectionMode="single"
+             (onRowSelect)="gridEmployeesOnRowSelect($event)">
       <ng-template pTemplate="header">
         <tr>
+          <th>Id</th>
           <th>FirstName</th>
           <th>LastName</th>
           <th>City</th>
@@ -50,7 +59,8 @@
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-emp>
-        <tr>
+        <tr [pSelectableRow]="emp">
+          <td>{{emp.Id}}</td>
           <td>{{emp.FirstName}}</td>
           <td>{{emp.LastName}}</td>
           <td>{{emp.City}}</td>
@@ -61,3 +71,13 @@
   </div>
 </div>
 
+<!--<div class="panel panel-info">
+  <div class="panel-heading">Test</div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-6">
+        <button id="btnTest" mat-raised-button name="btnTest" color="primary" (click)="btnTestClick($event)">Test</button>
+      </div>
+    </div>
+  </div>
+</div>-->

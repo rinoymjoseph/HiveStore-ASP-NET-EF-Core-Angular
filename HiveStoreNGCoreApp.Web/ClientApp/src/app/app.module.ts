@@ -10,6 +10,7 @@ import {
   MatButtonModule,
   MatInputModule,
   MatCheckboxModule,
+  MatProgressBarModule,
 } from '@angular/material';
 
 import { InputTextModule } from 'primeng/inputtext';
@@ -21,12 +22,14 @@ import { TableModule } from 'primeng/table';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -38,6 +41,7 @@ import { EmployeeComponent } from './employee/employee.component';
     MatButtonModule,
     MatInputModule,
     MatCheckboxModule,
+    MatProgressBarModule,
     InputTextModule,
     ListboxModule,
     CheckboxModule,
@@ -45,7 +49,8 @@ import { EmployeeComponent } from './employee/employee.component';
     TableModule,
     RouterModule.forRoot([
       { path: '', component: EmployeeComponent, pathMatch: 'full' },
-      { path: 'employee', component: EmployeeComponent }
+      { path: 'employee', component: EmployeeComponent },
+      { path: 'product', component: ProductComponent }
     ])
   ],
   providers: [],

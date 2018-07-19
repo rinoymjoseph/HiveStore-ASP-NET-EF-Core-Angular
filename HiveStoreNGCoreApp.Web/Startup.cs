@@ -1,4 +1,5 @@
 using HiveStore.DataAccess;
+using HiveStoreNGCoreApp.Web.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -70,6 +71,11 @@ namespace HiveStoreNGCoreApp.Web
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+        }
+
+        public void ConfigureAppServices(IServiceCollection services)
+        {
+            services.AddScoped<IMailHelper, MailHelper>();
         }
     }
 }

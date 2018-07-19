@@ -1,6 +1,16 @@
-@media (max-width: 767px) {
-  /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
-  .body-content {
-    padding-top: 50px;
-  }
+
+.body-content {
+  padding-top: 15px;
+  width: 100%;
+  padding-left: calc(15%)
+}
+
+::ng-deep.loading {
+  background: rgba(0, 0, 0, 0.3);
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 9998;
 }
