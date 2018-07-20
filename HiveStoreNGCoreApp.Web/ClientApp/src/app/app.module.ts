@@ -23,13 +23,15 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { ProductComponent } from './product/product.component';
+import { OrderComponent } from './order/order.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     EmployeeComponent,
-    ProductComponent
+    ProductComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -50,7 +52,8 @@ import { ProductComponent } from './product/product.component';
     RouterModule.forRoot([
       { path: '', component: EmployeeComponent, pathMatch: 'full' },
       { path: 'employee', component: EmployeeComponent },
-      { path: 'product', component: ProductComponent }
+      { path: 'product', component: ProductComponent },
+      { path: 'order', component: OrderComponent }
     ])
   ],
   providers: [],

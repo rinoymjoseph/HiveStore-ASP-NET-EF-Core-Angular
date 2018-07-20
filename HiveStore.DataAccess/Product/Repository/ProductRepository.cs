@@ -31,5 +31,10 @@ namespace HiveStore.DataAccess.Product.Repository
         {
             return _dataContext.Set<ProductEntity>().Where(x => !x.IsDeleted).ToList();
         }
+
+        public ProductEntity GetProductById(int productId)
+        {
+            return _dataContext.Set<ProductEntity>().FirstOrDefault(x => x.Id.Equals(productId));
+        }
     }
 }

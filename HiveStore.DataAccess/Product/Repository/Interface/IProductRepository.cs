@@ -9,6 +9,7 @@ namespace HiveStore.DataAccess.Product.Repository.Interface
     {
         void AddProduct(ProductEntity productEntity);
         List<ProductEntity> GetAllProducts();
+        ProductEntity GetProductById(int productId);
         string SaveChanges();
     }
 }

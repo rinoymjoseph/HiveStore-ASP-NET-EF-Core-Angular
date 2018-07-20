@@ -9,8 +9,7 @@ namespace HiveStore.Entity.Product
     {
         public int Id { get; set; }
         public string ProductName { get; set; }
-        public decimal UnitPrice { get; set; }
+        public double UnitPrice { get; set; }
         public ICollection<OrderDetailsEntity> OrderDetails { get; set; }
-
     }
 }

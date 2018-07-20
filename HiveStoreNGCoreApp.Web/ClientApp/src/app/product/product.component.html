@@ -1,3 +1,54 @@
-<p>
-  product works!
-</p>
+<div class="loading" *ngIf="isLoading">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<div class="panel panel-info">
+  <div class="panel-heading">Add/Edit Product</div>
+  <div class="panel-body" id="divPrint">
+    <form [formGroup]="formProduct">
+      <div class="row">
+        <div class="col-sm-6 col-md-6">
+          <mat-input-container>
+            <input matInput placeholder="Product Name" formControlName="ipProductName" matTooltip="Product Name" required>
+            <mat-error>Product Name is required</mat-error>
+          </mat-input-container>
+        </div>
+        <div class="col-sm-6 col-md-6">
+          <mat-input-container>
+            <input matInput placeholder="Unit Price" formControlName="ipUnitPrice" matTooltip="Unit Price" required>
+            <mat-error>Unit Price is required</mat-error>
+          </mat-input-container>
+        </div>
+      </div>
+      <div class="top-buffer-20"></div>
+      <div class="row">
+        <div class="col-sm-6">
+          <button id="btnSave" mat-raised-button name="btnSave" color="primary" (click)="btnSaveClick($event)">Save</button>
+          <button id="btnCancel" mat-raised-button name="btnCancel" (click)="btnCancelClick($event)">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="panel panel-info">
+  <div class="panel-heading">All Products</div>
+  <div class="panel-body">
+    <p-table [value]="products" [paginator]="true" [rows]="10" dataKey="Id" [(selection)]="selectedProduct" selectionMode="single"
+             (onRowSelect)="gridProductsOnRowSelect($event)">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Id</th>
+          <th>Product Name</th>
+          <th>Unit Price</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product>
+        <tr [pSelectableRow]="product">
+          <td>{{product.Id}}</td>
+          <td>{{product.ProductName}}</td>
+          <td>{{product.UnitPrice}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
