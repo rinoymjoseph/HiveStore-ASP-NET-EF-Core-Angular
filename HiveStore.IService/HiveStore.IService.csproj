@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Order\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HiveStore.Entity\HiveStore.Entity.csproj" />
+  </ItemGroup>
+
+</Project>

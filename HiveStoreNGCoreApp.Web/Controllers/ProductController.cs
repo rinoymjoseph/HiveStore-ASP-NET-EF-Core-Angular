@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HiveStore.DataAccess;
-using HiveStore.DataAccess.Product.Repository;
-using HiveStore.DataAccess.Product.Repository.Interface;
+﻿using HiveStore.DTO;
 using HiveStore.Entity.Product;
-using HiveStoreNGCoreApp.Web.Models;
-using Microsoft.AspNetCore.Http;
+using HiveStore.IService.Product;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 
 namespace HiveStoreNGCoreApp.Web.Controllers
 {
@@ -18,13 +12,12 @@ namespace HiveStoreNGCoreApp.Web.Controllers
     [Route("ProductAPI")]
     public class ProductController : Controller
     {
-        private readonly HiveDataContext _dataContext;
-        private readonly IConfiguration _configuration;
 
-        public ProductController(HiveDataContext dataContext, IConfiguration configuration)
+        private IProductService ProductService;
+
+        public ProductController(IProductService productService)
         {
-            _dataContext = dataContext;
-            _configuration = configuration;
+            ProductService = productService;
         }
 
         [Route("GetAllProducts")]
@@ -36,8 +29,7 @@ namespace HiveStoreNGCoreApp.Web.Controllers
 
             try
             {
-                IProductRepository productRepository = new ProductRepository(_dataContext);
-                productList = productRepository.GetAllProducts();
+                productList = ProductService.GetAllProducts();
                 baseResponseDTO.IsSuccess = true;
                 baseResponseDTO.Response = JsonConvert.SerializeObject(productList);
             }
@@ -57,24 +49,7 @@ namespace HiveStoreNGCoreApp.Web.Controllers
             BaseResponseDTO baseResponseDTO = new BaseResponseDTO();
             try
             {
-                IProductRepository productRepository = new ProductRepository(_dataContext);
-                if (productEntity.Id > 0)
-                {
-                    ProductEntity productEntity_saved = productRepository.GetProductById(productEntity.Id);
-                    productEntity_saved.ProductName = productEntity.ProductName;
-                    productEntity_saved.UnitPrice = productEntity.UnitPrice;
-                    productEntity_saved.ModifiedBy = System.Environment.UserName;
-                    productEntity_saved.ModifiedDate = DateTime.Now;
-                }
-                else
-                {
-                    productEntity.CreatedBy = System.Environment.UserName;
-                    productEntity.ModifiedBy = System.Environment.UserName;
-                    productEntity.CreatedDate = DateTime.Now;
-                    productEntity.ModifiedDate = DateTime.Now;
-                    productRepository.AddProduct(productEntity);
-                }
-                productRepository.SaveChanges();
+                ProductService.SaveProduct(productEntity);                
                 baseResponseDTO.IsSuccess = true;
             }
             catch (Exception ex)
@@ -82,7 +57,6 @@ namespace HiveStoreNGCoreApp.Web.Controllers
                 baseResponseDTO.IsSuccess = false;
                 baseResponseDTO.Message = ex.Message;
             }
-
             return Ok(baseResponseDTO);
         }
 

@@ -1,13 +1,10 @@
-﻿using HiveStore.DataAccess.Employee.Configuration;
-using HiveStore.DataAccess.Order.Configuration;
-using HiveStore.DataAccess.Product.Configuration;
+﻿using HiveStore.DataAccess.Configuration.Employee;
+using HiveStore.DataAccess.Configuration.Order;
+using HiveStore.DataAccess.Configuration.Product;
 using HiveStore.Entity.Employee;
 using HiveStore.Entity.Order;
 using HiveStore.Entity.Product;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HiveStore.DataAccess
 {

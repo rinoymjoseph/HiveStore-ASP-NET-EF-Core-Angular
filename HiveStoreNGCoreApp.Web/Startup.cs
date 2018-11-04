@@ -1,5 +1,5 @@
 using HiveStore.DataAccess;
-using HiveStoreNGCoreApp.Web.Helpers;
+using HiveStore.Extension;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -35,6 +35,7 @@ namespace HiveStoreNGCoreApp.Web
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+            HiveStoreDI.Configure(services, Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,11 +72,6 @@ namespace HiveStoreNGCoreApp.Web
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
-        }
-
-        public void ConfigureAppServices(IServiceCollection services)
-        {
-            services.AddScoped<IMailHelper, MailHelper>();
         }
     }
 }

@@ -7,11 +7,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiveStoreNGCoreApp.Web", "H
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiveStore.Entity", "HiveStore.Entity\HiveStore.Entity.csproj", "{3DD0F5A2-29E0-407B-9D3E-22F094F320F3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiveStore.DataAccess", "HiveStore.DataAccess\HiveStore.DataAccess.csproj", "{8A19E6BA-DA7A-4AA1-8A7D-751238325375}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiveStore.DataContext", "HiveStore.DataAccess\HiveStore.DataContext.csproj", "{8A19E6BA-DA7A-4AA1-8A7D-751238325375}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "HiveStore.Database", "HiveStore.Database\HiveStore.Database.sqlproj", "{18F364CC-AD7E-4634-BFC4-149A6C3FC042}"
 EndProject
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "HiveStore.AzureResourceGroup", "HiveStore.AzureResourceGroup\HiveStore.AzureResourceGroup.deployproj", "{0A1E9CE2-44DB-4D09-9D1D-8413B8700C10}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiveStore.IRepository", "HiveStore.IRepository\HiveStore.IRepository.csproj", "{F30B5750-E30A-4697-A1C5-DA731419D603}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiveStore.Repository", "HiveStore.Repository\HiveStore.Repository.csproj", "{8C013634-A01D-4B81-9773-BDB47D68700D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiveStore.IService", "HiveStore.IService\HiveStore.IService.csproj", "{C12634C8-10D3-42D4-A4A9-FBD8C0619F0E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiveStore.Service", "HiveStore.Service\HiveStore.Service.csproj", "{CA138FDA-DDB7-434E-8C0C-98A6B3C9BDE1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiveStore.DTO", "HiveStore.DTO\HiveStore.DTO.csproj", "{A0AA6926-CF36-421D-A8C2-1486EEF57888}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiveStore.DI", "HiveStore.Helper\HiveStore.DI.csproj", "{B9B73053-8396-4A4B-BB00-7AB96C29FD98}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +53,30 @@ Global
 		{0A1E9CE2-44DB-4D09-9D1D-8413B8700C10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A1E9CE2-44DB-4D09-9D1D-8413B8700C10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A1E9CE2-44DB-4D09-9D1D-8413B8700C10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F30B5750-E30A-4697-A1C5-DA731419D603}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F30B5750-E30A-4697-A1C5-DA731419D603}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F30B5750-E30A-4697-A1C5-DA731419D603}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F30B5750-E30A-4697-A1C5-DA731419D603}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C013634-A01D-4B81-9773-BDB47D68700D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C013634-A01D-4B81-9773-BDB47D68700D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C013634-A01D-4B81-9773-BDB47D68700D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C013634-A01D-4B81-9773-BDB47D68700D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C12634C8-10D3-42D4-A4A9-FBD8C0619F0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C12634C8-10D3-42D4-A4A9-FBD8C0619F0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C12634C8-10D3-42D4-A4A9-FBD8C0619F0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C12634C8-10D3-42D4-A4A9-FBD8C0619F0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA138FDA-DDB7-434E-8C0C-98A6B3C9BDE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA138FDA-DDB7-434E-8C0C-98A6B3C9BDE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA138FDA-DDB7-434E-8C0C-98A6B3C9BDE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA138FDA-DDB7-434E-8C0C-98A6B3C9BDE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0AA6926-CF36-421D-A8C2-1486EEF57888}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0AA6926-CF36-421D-A8C2-1486EEF57888}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0AA6926-CF36-421D-A8C2-1486EEF57888}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0AA6926-CF36-421D-A8C2-1486EEF57888}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9B73053-8396-4A4B-BB00-7AB96C29FD98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9B73053-8396-4A4B-BB00-7AB96C29FD98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9B73053-8396-4A4B-BB00-7AB96C29FD98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9B73053-8396-4A4B-BB00-7AB96C29FD98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
