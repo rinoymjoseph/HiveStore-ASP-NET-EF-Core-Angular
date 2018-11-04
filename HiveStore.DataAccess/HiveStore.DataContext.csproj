@@ -9,9 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Order\Repository\**" />
-    <EmbeddedResource Remove="Order\Repository\**" />
-    <None Remove="Order\Repository\**" />
+    <Compile Remove="Configuration\Order\Repository\**" />
+    <EmbeddedResource Remove="Configuration\Order\Repository\**" />
+    <None Remove="Configuration\Order\Repository\**" />
   </ItemGroup>
 
   <ItemGroup>

@@ -27,8 +27,8 @@ namespace HiveStoreNGCoreApp.Web
                 options.SerializerSettings.ContractResolver = new DefaultContractResolver();
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
-            services.AddDbContext<HiveDataContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<HiveDataContext>(options =>
+            //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -52,6 +52,7 @@ namespace HiveStoreNGCoreApp.Web
 
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+            app.UsePathBase(new Microsoft.AspNetCore.Http.PathString("/HiveStoreApp/"));
 
             app.UseMvc(routes =>
             {
