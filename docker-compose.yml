@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+
+  hivewebapp:
+    build:
+      context: .
+      dockerfile: webapp.dockerfile
+    ports:
+      - "5000:5000"
+    networks: 
+      - hive-network
+  
+  hivestoredb:
+    build:
+      context: .
+      dockerfile: sql.dockerfile
+    environment:
+            SA_PASSWORD: "Samtron@1"
+            ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    networks:
+      - hive-network
+
+networks:
+  hive-network:
+    driver: bridge

@@ -48,6 +48,8 @@ namespace HiveStore.WebApp.Controllers
             BaseResponseDTO baseResponseDTO = new BaseResponseDTO();
             try
             {
+                var temp = 123;
+                temp = 23;
                 EmployeeService.SaveEmployee(employeeEntity);         
                 baseResponseDTO.IsSuccess = true;
             }
