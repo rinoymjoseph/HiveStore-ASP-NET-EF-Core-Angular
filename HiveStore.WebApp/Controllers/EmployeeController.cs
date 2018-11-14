@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
-namespace HiveStoreNGCoreApp.Web.Controllers
+namespace HiveStore.WebApp.Controllers
 {
     [Produces("application/json")]
     [Route("EmployeeAPI")]

@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
 
-namespace HiveStoreNGCoreApp.Web
+namespace HiveStore.WebApp
 {
     public class Startup
     {
@@ -52,7 +52,7 @@ namespace HiveStoreNGCoreApp.Web
 
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-            app.UsePathBase(new Microsoft.AspNetCore.Http.PathString("/HiveStoreApp/"));
+            app.UsePathBase(new Microsoft.AspNetCore.Http.PathString("/HiveStoreApp"));
 
             app.UseMvc(routes =>
             {

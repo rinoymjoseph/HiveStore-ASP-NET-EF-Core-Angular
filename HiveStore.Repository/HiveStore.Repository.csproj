@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HiveStore.DataAccess\HiveStore.DataContext.csproj" />
+    <ProjectReference Include="..\HiveStore.Entity\HiveStore.Entity.csproj" />
     <ProjectReference Include="..\HiveStore.IRepository\HiveStore.IRepository.csproj" />
   </ItemGroup>
 

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace HiveStoreNGCoreApp.Web
+namespace HiveStore.WebApp
 {
     public class Program
     {
