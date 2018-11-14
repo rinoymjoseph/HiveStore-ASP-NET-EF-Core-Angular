@@ -11,8 +11,19 @@ RUN curl -SL "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-lin
     && rm nodejs.tar.gz \
     && ln -s /usr/local/bin/node /usr/local/bin/nodejs
 
-COPY . .
+COPY HiveStore.DTO/HiveStore.DTO.csproj HiveStore.DTO/
+COPY HiveStore.Entity/HiveStore.Entity.csproj HiveStore.Entity/
+COPY HiveStore.DataAccess/HiveStore.DataContext.csproj HiveStore.DataAccess/
+COPY HiveStore.IRepository/HiveStore.IRepository.csproj HiveStore.IRepository/
+COPY HiveStore.Repository/HiveStore.Repository.csproj HiveStore.Repository/
+COPY HiveStore.IService/HiveStore.IService.csproj HiveStore.IService/
+COPY HiveStore.Service/HiveStore.Service.csproj HiveStore.Service/
+COPY HiveStore.DI/HiveStore.DI.csproj HiveStore.DI/
+COPY HiveStore.WebApp/HiveStore.WebApp.csproj HiveStore.WebApp/
 RUN dotnet restore HiveStore.WebApp/HiveStore.WebApp.csproj
+
+COPY . .
+
 WORKDIR /app/HiveStore.WebApp
 RUN dotnet publish -c Release -o out
 

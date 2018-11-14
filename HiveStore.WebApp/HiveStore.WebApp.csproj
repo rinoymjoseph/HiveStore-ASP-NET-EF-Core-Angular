@@ -32,9 +32,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HiveStore.DI\HiveStore.DI.csproj" />
     <ProjectReference Include="..\HiveStore.DTO\HiveStore.DTO.csproj" />
     <ProjectReference Include="..\HiveStore.Entity\HiveStore.Entity.csproj" />
-    <ProjectReference Include="..\HiveStore.Helper\HiveStore.DI.csproj" />
     <ProjectReference Include="..\HiveStore.IService\HiveStore.IService.csproj" />
   </ItemGroup>
 
