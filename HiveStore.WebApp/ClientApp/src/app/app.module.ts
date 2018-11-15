@@ -20,10 +20,11 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { EmployeeComponent } from './employee/employee.component';
-import { ProductComponent } from './product/product.component';
-import { OrderComponent } from './order/order.component';
+import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
+import { EmployeeComponent } from './components/employee/employee.component';
+import { ProductComponent } from './components/product/product.component';
+import { OrderComponent } from './components/order/order.component';
+import { ServerInfoComponent } from './components/server-info/server-info.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { OrderComponent } from './order/order.component';
     NavMenuComponent,
     EmployeeComponent,
     ProductComponent,
-    OrderComponent
+    OrderComponent,
+    ServerInfoComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

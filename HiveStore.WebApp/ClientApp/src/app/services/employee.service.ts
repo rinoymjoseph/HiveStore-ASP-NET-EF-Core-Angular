@@ -4,9 +4,9 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
 import { Observable } from 'rxjs/Observable';
 import { AppSettings } from '../app.settings';
-import { BaseResponse } from '../base-response.model';
-import { BaseService } from '../base.service';
-import { Employee } from './employee.model';
+import { BaseResponse } from '../models/base-response.model';
+import { BaseService } from '../services/base.service';
+import { Employee } from '../models/employee.model';
 
 export class EmployeeService extends BaseService {
 

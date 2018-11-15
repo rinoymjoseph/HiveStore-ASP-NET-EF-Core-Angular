@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Employee } from './employee.model';
-import { EmployeeService } from './employee.service';
+import { Employee } from '../../models/employee.model';
+import { EmployeeService } from '../../services/employee.service';
 import * as jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
 import * as domtoimage from 'dom-to-image';
