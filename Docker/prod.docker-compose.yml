@@ -1,0 +1,40 @@
+version: '2'
+
+services:
+
+  proxy:
+    build:
+      context: ../Nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - hivewebapp
+    networks:
+      - hive-network
+
+  hivewebapp:
+    build:
+      context: ../
+      dockerfile: Docker/prod.webapp.dockerfile
+    ports:
+      - "5000"
+    networks: 
+      - hive-network
+    depends_on:
+      - hivestoredb
+  
+  hivestoredb:
+    build:
+      context: ../
+      dockerfile: Docker/sql.dockerfile
+    environment:
+            SA_PASSWORD: "Samtron@1"
+            ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    networks:
+      - hive-network
+
+networks:
+  hive-network:
+    driver: bridge

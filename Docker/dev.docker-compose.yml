@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+
+  hivewebapp:
+    build:
+      context: ../
+      dockerfile: Docker/dev.webapp.dockerfile
+    ports:
+      - "5000:5000"
+    networks: 
+      - hive-network
+    volumes:
+      - ../:/app
+
+networks:
+  hive-network:
+    driver: bridge

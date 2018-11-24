@@ -1,6 +1,8 @@
 ﻿using HiveStore.DTO;
 using HiveStore.Entity.Employee;
+using HiveStore.IHelper;
 using HiveStore.IService.Employee;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -13,10 +15,12 @@ namespace HiveStore.WebApp.Controllers
     public class EmployeeController : Controller
     {
         private IEmployeeService EmployeeService;
+        private IServerInfoHelper ServerInfoHelper;
 
-        public EmployeeController(IEmployeeService employeeService)
+        public EmployeeController(IEmployeeService employeeService, IServerInfoHelper serverInfoHelper)
         {
             EmployeeService = employeeService;
+            ServerInfoHelper = serverInfoHelper;
         }
 
         [Route("GetAllEmployees")]
@@ -25,6 +29,7 @@ namespace HiveStore.WebApp.Controllers
         {
             BaseResponseDTO baseResponseDTO = new BaseResponseDTO();
             List<EmployeeEntity> empolyeeList;
+            ServerInfoHelper.BindServerInfo(HttpContext.Features.Get<IHttpConnectionFeature>(), baseResponseDTO);
 
             try
             {
@@ -46,10 +51,10 @@ namespace HiveStore.WebApp.Controllers
         public IActionResult SaveEmployee([FromBody] EmployeeEntity employeeEntity)
         {
             BaseResponseDTO baseResponseDTO = new BaseResponseDTO();
+            ServerInfoHelper.BindServerInfo(HttpContext.Features.Get<IHttpConnectionFeature>(), baseResponseDTO);
+
             try
             {
-                var temp = 123;
-                temp = 23;
                 EmployeeService.SaveEmployee(employeeEntity);         
                 baseResponseDTO.IsSuccess = true;
             }

@@ -11,3 +11,10 @@
 4) Replace the connection string in ConnectionStrings section in appsettings.json in HiveStoreNGCoreApp.Web project
 
 The application is ready to run.
+
+Docker
+-------
+C:\projects\github\HiveStore-ASP-NET-EF-Core-Angular> docker-compose -f .\Docker\prod-lb.docker-compose.yml build
+docker-compose -f .\Docker\prod-lb.docker-compose.yml build
+docker-compose -f .\Docker\prod-lb.docker-compose.yml up
+docker-compose -f .\Docker\prod-lb.docker-compose.yml down

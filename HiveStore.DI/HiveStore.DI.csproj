@@ -9,6 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HiveStore.Helper\HiveStore.Helper.csproj" />
+    <ProjectReference Include="..\HiveStore.IHelper\HiveStore.IHelper.csproj" />
     <ProjectReference Include="..\HiveStore.IRepository\HiveStore.IRepository.csproj" />
     <ProjectReference Include="..\HiveStore.IService\HiveStore.IService.csproj" />
     <ProjectReference Include="..\HiveStore.Repository\HiveStore.Repository.csproj" />

@@ -18,10 +18,15 @@ COPY HiveStore.IRepository/HiveStore.IRepository.csproj HiveStore.IRepository/
 COPY HiveStore.Repository/HiveStore.Repository.csproj HiveStore.Repository/
 COPY HiveStore.IService/HiveStore.IService.csproj HiveStore.IService/
 COPY HiveStore.Service/HiveStore.Service.csproj HiveStore.Service/
-COPY HiveStore.DI/HiveStore.DI.csproj HiveStore.DI/
+COPY HiveStore.Helper/HiveStore.DI.csproj HiveStore.Helper/
 COPY HiveStore.WebApp/HiveStore.WebApp.csproj HiveStore.WebApp/
 RUN dotnet restore HiveStore.WebApp/HiveStore.WebApp.csproj
 
+COPY HiveStore.WebApp/ClientApp/package.json HiveStore.WebApp/ClientApp/
+WORKDIR /app/HiveStore.WebApp/ClientApp
+RUN npm install
+
+WORKDIR /app
 COPY . .
 
 WORKDIR /app/HiveStore.WebApp

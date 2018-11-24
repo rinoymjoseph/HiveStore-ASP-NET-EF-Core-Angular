@@ -5,7 +5,10 @@
 .vs
 .vscode
 docker-compose.yml
-docker-compose.*.yml
+*.docker-compose.yml
+HiveStore.AzureResourceGroup
+HiveStore.Database
+HiveStore.Deploy
 HiveStore.DTO/bin
 HiveStore.DTO/obj
 HiveStore.Entity/bin
@@ -20,6 +23,8 @@ HiveStore.IService/bin
 HiveStore.IService/obj
 HiveStore.Service/bin
 HiveStore.Service/obj
+HiveStore.IHelper/bin
+HiveStore.Helper/obj
 HiveStore.DI/bin
 HiveStore.DI/obj
 HiveStore.WebApp/bin

@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import { BaseResponse } from '../models/base-response.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { ServerInfo } from '../models/server-info.model';
+import { AppSettings } from '../app.settings';
 
 @Injectable()
 export class BaseService {
@@ -19,9 +21,15 @@ export class BaseService {
 
   public extractData(res: BaseResponse) {
     if (res.IsSuccess) {
+      let serverInfo: ServerInfo = new ServerInfo();
+      serverInfo.ConnectionId = res.ConnectionId;
+      serverInfo.LocalIpAddress = res.LocalIpAddress;
+      serverInfo.LocalPort = res.LocalPort;
+      serverInfo.RemoteIpAddress = res.RemoteIpAddress;
+      serverInfo.RemotePort = res.RemotePort;
+      AppSettings.ServerInfo.next(serverInfo);
       return JSON.parse(res.Response);
     } else {
-      //this.router.navigateByUrl('MillBaseEC/Error');
     }
   }
 

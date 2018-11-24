@@ -1,4 +1,9 @@
+import { Subject } from "rxjs/Subject";
+import { ServerInfo } from "./models/server-info.model";
+
 export class AppSettings {
+
+  public static ServerInfo: Subject<ServerInfo> = new Subject<ServerInfo>();;
 
   //APIs
   public static EMPLOYEE_API = 'EmployeeAPI';

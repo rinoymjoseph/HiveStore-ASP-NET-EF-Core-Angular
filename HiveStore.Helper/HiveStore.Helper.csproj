@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HiveStore.DTO\HiveStore.DTO.csproj" />
+    <ProjectReference Include="..\HiveStore.IHelper\HiveStore.IHelper.csproj" />
+  </ItemGroup>
+
+</Project>

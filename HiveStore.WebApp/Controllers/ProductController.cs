@@ -1,6 +1,8 @@
 ﻿using HiveStore.DTO;
 using HiveStore.Entity.Product;
+using HiveStore.IHelper;
 using HiveStore.IService.Product;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -12,12 +14,13 @@ namespace HiveStore.WebApp.Controllers
     [Route("ProductAPI")]
     public class ProductController : Controller
     {
-
         private IProductService ProductService;
+        private IServerInfoHelper ServerInfoHelper;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productService, IServerInfoHelper serverInfoHelper)
         {
             ProductService = productService;
+            ServerInfoHelper = serverInfoHelper;
         }
 
         [Route("GetAllProducts")]
@@ -26,6 +29,7 @@ namespace HiveStore.WebApp.Controllers
         {
             BaseResponseDTO baseResponseDTO = new BaseResponseDTO();
             List<ProductEntity> productList;
+            ServerInfoHelper.BindServerInfo(HttpContext.Features.Get<IHttpConnectionFeature>(), baseResponseDTO);
 
             try
             {
@@ -47,6 +51,8 @@ namespace HiveStore.WebApp.Controllers
         public IActionResult SaveProduct([FromBody] ProductEntity productEntity)
         {
             BaseResponseDTO baseResponseDTO = new BaseResponseDTO();
+            ServerInfoHelper.BindServerInfo(HttpContext.Features.Get<IHttpConnectionFeature>(), baseResponseDTO);
+
             try
             {
                 ProductService.SaveProduct(productEntity);                
