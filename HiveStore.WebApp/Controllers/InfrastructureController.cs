@@ -14,23 +14,24 @@ namespace HiveStore.WebApp.Controllers
     [Route("InfrastructureAPI")]
     public class InfrastructureController : Controller
     {
-        [Route("GetServerInfo")]
+        [Route("GetRequestInfo")]
         [HttpGet]
-        public IActionResult GetServerInfo()
+        public IActionResult GetRequestInfo()
         {
             BaseResponseDTO baseResponseDTO = new BaseResponseDTO();
 
             try
             {
                 var httpConnectionFeature = HttpContext.Features.Get<IHttpConnectionFeature>();
-                ServerInfo serverInfo = new ServerInfo();
-                serverInfo.ConnectionId = httpConnectionFeature.ConnectionId;
-                serverInfo.LocalIpAddress = httpConnectionFeature.LocalIpAddress.MapToIPv4().ToString();
-                serverInfo.LocalPort = httpConnectionFeature.LocalPort;
-                serverInfo.RemoteIpAddress = httpConnectionFeature.RemoteIpAddress.MapToIPv4().ToString();
-                serverInfo.RemotePort = httpConnectionFeature.RemotePort;
+                RequestInfo requestInfo = new RequestInfo();
+                requestInfo.ConnectionId = httpConnectionFeature.ConnectionId;
+                requestInfo.LocalIpAddress = httpConnectionFeature.LocalIpAddress.MapToIPv4().ToString();
+                requestInfo.LocalPort = httpConnectionFeature.LocalPort;
+                requestInfo.RemoteIpAddress = httpConnectionFeature.RemoteIpAddress.MapToIPv4().ToString();
+                requestInfo.RemotePort = httpConnectionFeature.RemotePort;
+                requestInfo.RequestPath = HttpContext.Request.Path.Value;
                 baseResponseDTO.IsSuccess = true;
-                baseResponseDTO.Response = JsonConvert.SerializeObject(serverInfo);
+                baseResponseDTO.Response = JsonConvert.SerializeObject(requestInfo);
             }
             catch (Exception ex)
             {

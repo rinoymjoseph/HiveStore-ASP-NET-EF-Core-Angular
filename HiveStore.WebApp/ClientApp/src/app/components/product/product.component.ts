@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Product } from '../../models/product.model';
 import { ProductService } from '../../services/product.service';
+import { AppSettings } from '../../app.settings';
 
 @Component({
   selector: 'app-product',
@@ -22,6 +23,7 @@ export class ProductComponent implements OnInit {
     private productService: ProductService) { }
 
   ngOnInit() {
+    AppSettings.IsLoginPageEvent.next(false);
     this.createProductForm();
     this.getAllProducts();
   }

@@ -15,12 +15,12 @@ namespace HiveStore.WebApp.Controllers
     public class EmployeeController : Controller
     {
         private IEmployeeService EmployeeService;
-        private IServerInfoHelper ServerInfoHelper;
+        private IRequestInfoHelper RequestInfoHelper;
 
-        public EmployeeController(IEmployeeService employeeService, IServerInfoHelper serverInfoHelper)
+        public EmployeeController(IEmployeeService employeeService, IRequestInfoHelper serverInfoHelper)
         {
             EmployeeService = employeeService;
-            ServerInfoHelper = serverInfoHelper;
+            RequestInfoHelper = serverInfoHelper;
         }
 
         [Route("GetAllEmployees")]
@@ -29,7 +29,7 @@ namespace HiveStore.WebApp.Controllers
         {
             BaseResponseDTO baseResponseDTO = new BaseResponseDTO();
             List<EmployeeEntity> empolyeeList;
-            ServerInfoHelper.BindServerInfo(HttpContext.Features.Get<IHttpConnectionFeature>(), baseResponseDTO);
+            RequestInfoHelper.BindRequestInfo(HttpContext, baseResponseDTO);
 
             try
             {
@@ -51,7 +51,7 @@ namespace HiveStore.WebApp.Controllers
         public IActionResult SaveEmployee([FromBody] EmployeeEntity employeeEntity)
         {
             BaseResponseDTO baseResponseDTO = new BaseResponseDTO();
-            ServerInfoHelper.BindServerInfo(HttpContext.Features.Get<IHttpConnectionFeature>(), baseResponseDTO);
+            RequestInfoHelper.BindRequestInfo(HttpContext, baseResponseDTO);
 
             try
             {

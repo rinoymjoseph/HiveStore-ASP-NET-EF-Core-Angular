@@ -54,7 +54,7 @@ namespace HiveStore.Extension
 
         private static void ConfigureHelpers(IServiceCollection services)
         {
-            services.AddScoped<IServerInfoHelper, ServerInfoHelper>();
+            services.AddScoped<IRequestInfoHelper, RequestInfoHelper>();
         }
     }
 }

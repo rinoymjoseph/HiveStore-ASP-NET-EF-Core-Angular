@@ -5,6 +5,7 @@ import { EmployeeService } from '../../services/employee.service';
 import * as jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
 import * as domtoimage from 'dom-to-image';
+import { AppSettings } from '../../app.settings';
 
 @Component({
   selector: 'app-employee',
@@ -27,6 +28,7 @@ export class EmployeeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    AppSettings.IsLoginPageEvent.next(false);
     this.createEmployeeForm();
     this.getAllEmployees();
   }

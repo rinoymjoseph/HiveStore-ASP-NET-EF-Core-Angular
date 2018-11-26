@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\HiveStore.DTO\HiveStore.DTO.csproj" />
     <ProjectReference Include="..\HiveStore.IHelper\HiveStore.IHelper.csproj" />
   </ItemGroup>

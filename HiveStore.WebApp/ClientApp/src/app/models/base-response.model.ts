@@ -7,4 +7,5 @@ export class BaseResponse {
   LocalIpAddress: string;
   RemotePort: string;
   LocalPort: string;
+  RequestPath: string;
 }

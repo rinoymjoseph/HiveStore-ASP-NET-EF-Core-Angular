@@ -15,12 +15,12 @@ namespace HiveStore.WebApp.Controllers
     public class ProductController : Controller
     {
         private IProductService ProductService;
-        private IServerInfoHelper ServerInfoHelper;
+        private IRequestInfoHelper RequestInfoHelper;
 
-        public ProductController(IProductService productService, IServerInfoHelper serverInfoHelper)
+        public ProductController(IProductService productService, IRequestInfoHelper requestInfoHelper)
         {
             ProductService = productService;
-            ServerInfoHelper = serverInfoHelper;
+            RequestInfoHelper = requestInfoHelper;
         }
 
         [Route("GetAllProducts")]
@@ -29,7 +29,7 @@ namespace HiveStore.WebApp.Controllers
         {
             BaseResponseDTO baseResponseDTO = new BaseResponseDTO();
             List<ProductEntity> productList;
-            ServerInfoHelper.BindServerInfo(HttpContext.Features.Get<IHttpConnectionFeature>(), baseResponseDTO);
+            RequestInfoHelper.BindRequestInfo(HttpContext, baseResponseDTO);
 
             try
             {
@@ -51,7 +51,7 @@ namespace HiveStore.WebApp.Controllers
         public IActionResult SaveProduct([FromBody] ProductEntity productEntity)
         {
             BaseResponseDTO baseResponseDTO = new BaseResponseDTO();
-            ServerInfoHelper.BindServerInfo(HttpContext.Features.Get<IHttpConnectionFeature>(), baseResponseDTO);
+            RequestInfoHelper.BindRequestInfo(HttpContext, baseResponseDTO);
 
             try
             {
