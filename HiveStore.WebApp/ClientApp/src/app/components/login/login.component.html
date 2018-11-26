@@ -5,20 +5,19 @@
       <form [formGroup]="loginForm" class="form" novalidate>
         <div>
           <input formControlName="userName" id="userName" name="UserName" placeholder="Enter Email ID" type="text" required />
-          <mat-error class="login-field-validation-error" *ngIf="isUserNameInValid">
+          <!--<mat-error class="login-field-validation-error">
             The Email ID field is required.
-          </mat-error>
-          <input id="ReturnUrl" name="ReturnUrl" type="hidden" value="/GMPWeb/">
+          </mat-error>-->
         </div>
         <div>
           <input formControlName="password" id="password" name="Password" placeholder="Password" type="password" required>
-          <mat-error class="login-field-validation-error" *ngIf="isPasswordInValid">
+          <!--<mat-error class="login-field-validation-error">
             The Password field is required.
-          </mat-error>
+          </mat-error>-->
         </div>
         <div class="footer-buttons">
           <input type="submit" (click)="btnLoginClick(loginForm)" mat-raised-button value="Login" />
-          <a href="{{appDetails?.HomePageURL}}" class="reset">Cancel</a>
+          <a href="" class="reset">Cancel</a>
         </div>
       </form>
     </div>
