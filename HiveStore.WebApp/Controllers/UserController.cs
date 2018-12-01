@@ -48,14 +48,14 @@ namespace HiveStore.WebApp.Controllers
 
         [Route("SaveUser")]
         [HttpPost]
-        public async Task<IActionResult> SaveUser([FromBody] UserEntity userEntity)
+        public async Task<IActionResult> SaveUser([FromBody] UserDTO userDTO)
         {
             BaseResponseDTO baseResponseDTO = new BaseResponseDTO();
             _requestInfoHelper.BindRequestInfo(HttpContext, baseResponseDTO);
 
             try
             {
-                var result = await _userService.SaveUser(userEntity);         
+                var result = await _userService.SaveUser(userDTO);         
                 baseResponseDTO.IsSuccess = true;
             }
             catch (Exception ex)

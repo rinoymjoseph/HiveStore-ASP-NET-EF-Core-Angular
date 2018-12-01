@@ -6,27 +6,39 @@
   <div class="panel-body" id="divPrint">
     <form [formGroup]="formUser">
       <div class="row">
-        <div class="col-sm-6 col-md-6">
+        <div class="col-sm-4 col-md-4">
           <mat-input-container>
-            <input matInput placeholder="First Name" formControlName="ipFirstName" matTooltip="First Name" required>
-            <mat-error>First Name is required</mat-error>
+            <input matInput placeholder="User Name" formControlName="ipUserName" matTooltip="User Name" required>
+            <mat-error>User Name is required</mat-error>
           </mat-input-container>
         </div>
-        <div class="col-sm-6 col-md-6">
+        <div class="col-sm-4 col-md-4">
           <mat-input-container>
-            <input matInput placeholder="Last Name" formControlName="ipLastName" matTooltip="Last Name" required>
+            <input matInput placeholder="Password" formControlName="ipPassword" matTooltip="Password" required>
             <mat-error>Last Name is required</mat-error>
           </mat-input-container>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6 col-md-6">
+        <div class="col-sm-4 col-md-4">
           <mat-input-container>
             <input matInput placeholder="Country" formControlName="ipCountry" matTooltip="Country" required>
             <mat-error>Country is required</mat-error>
           </mat-input-container>
         </div>
-        <div class="col-sm-6 col-md-6">
+      </div>
+      <div class="row">
+        <div class="col-sm-4 col-md-4">
+          <mat-input-container>
+            <input matInput placeholder="First Name" formControlName="ipFirstName" matTooltip="First Name" required>
+            <mat-error>First Name is required</mat-error>
+          </mat-input-container>
+        </div>
+        <div class="col-sm-4 col-md-4">
+          <mat-input-container>
+            <input matInput placeholder="Last Name" formControlName="ipLastName" matTooltip="Last Name" required>
+            <mat-error>Last Name is required</mat-error>
+          </mat-input-container>
+        </div>
+        <div class="col-sm-4 col-md-4">
           <mat-input-container>
             <input matInput placeholder="City" formControlName="ipCity" matTooltip="City" required>
             <mat-error>City is required</mat-error>

@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HiveStore.DTO\HiveStore.DTO.csproj" />
     <ProjectReference Include="..\HiveStore.Entity\HiveStore.Entity.csproj" />
   </ItemGroup>
 

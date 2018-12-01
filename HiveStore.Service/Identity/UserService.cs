@@ -1,4 +1,5 @@
-﻿using HiveStore.Entity.Identity;
+﻿using HiveStore.DTO;
+using HiveStore.Entity.Identity;
 using HiveStore.IRepository.Identity;
 using HiveStore.IService.Identity;
 using Microsoft.AspNetCore.Identity;
@@ -22,20 +23,26 @@ namespace HiveStore.Service.Identity
             _roleManager = roleManager;
         }
 
-        public async Task<IdentityResult> SaveUser(UserEntity userEntity)
+        public async Task<IdentityResult> SaveUser(UserDTO userDTO)
         {
             try
             {
-                UserEntity _userEntity = new UserEntity();
-                _userEntity.FirstName = "Rinoy";
-                _userEntity.LastName = "Joseph";
-                _userEntity.UserName = "rinoy";
-                _userEntity.CreatedBy = System.Environment.UserName;
-                _userEntity.ModifiedBy = System.Environment.UserName;
-                _userEntity.CreatedDate = DateTime.Now;
-                _userEntity.ModifiedDate = DateTime.Now;
-                var result = await _userManager.CreateAsync(_userEntity, "Samtron@1");
-                return result;
+                UserEntity _userEntity_saved = _userRepository.GetUserById(userDTO.Id);
+                if (_userEntity_saved == null)
+                {
+                    UserEntity _userEntity = new UserEntity();
+                    MapUserDTOToUseEntity(userDTO, _userEntity);
+                    _userEntity.CreatedBy = System.Environment.UserName;
+                    _userEntity.CreatedDate = DateTime.Now;
+                    return await _userManager.CreateAsync(_userEntity, userDTO.Password);
+                }
+                else
+                {
+                    MapUserDTOToUseEntity(userDTO, _userEntity_saved);
+                    var newPassword = _userManager.PasswordHasher.HashPassword(_userEntity_saved, userDTO.Password);
+                    _userEntity_saved.PasswordHash = newPassword;
+                    return await _userManager.UpdateAsync(_userEntity_saved);
+                }                            
             }
             catch (Exception)
             {
@@ -77,6 +84,17 @@ namespace HiveStore.Service.Identity
             {
                 throw;
             }
+        }
+
+        private void MapUserDTOToUseEntity(UserDTO userDTO, UserEntity userEntity)
+        {
+            userEntity.UserName = userDTO.UserName;
+            userEntity.FirstName = userDTO.FirstName;
+            userEntity.LastName = userDTO.LastName;
+            userEntity.Country = userDTO.Country;
+            userEntity.City = userDTO.City;
+            userEntity.ModifiedBy = System.Environment.UserName;
+            userEntity.ModifiedDate = DateTime.Now;
         }
     }
 }

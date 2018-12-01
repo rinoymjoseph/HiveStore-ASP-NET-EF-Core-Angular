@@ -32,6 +32,8 @@ export class UserComponent implements OnInit {
 
   createUserForm() {
     this.formUser = this.fb.group({
+      ipUserName: [],
+      ipPassword: [],
       ipFirstName: [],
       ipLastName: [],
       ipCountry: [],
@@ -47,6 +49,8 @@ export class UserComponent implements OnInit {
 
   btnCancelClick(event: any) {
     this.formUser.patchValue({
+      ipUserName: '',
+      ipPassword: '',
       ipFirstName: '',
       ipLastName: '',
       ipCountry: '',
@@ -58,6 +62,8 @@ export class UserComponent implements OnInit {
   gridUsersOnRowSelect(event) {
     //console.log(this.selectedUser);
     this.formUser.patchValue({
+      ipUserName: this.selectedUser.UserName,
+      ipPassword: this.selectedUser.Password,
       ipFirstName: this.selectedUser.FirstName,
       ipLastName: this.selectedUser.LastName,
       ipCountry: this.selectedUser.Country,
@@ -81,6 +87,8 @@ export class UserComponent implements OnInit {
 
   saveUser() {
     const user: User = new User();
+    user.UserName = this.formUser.value.ipUserName;
+    user.Password = this.formUser.value.ipPassword;
     user.FirstName = this.formUser.value.ipFirstName;
     user.LastName = this.formUser.value.ipLastName;
     user.City = this.formUser.value.ipCity;

@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HiveStore.DataAccess\HiveStore.DataContext.csproj" />
+    <ProjectReference Include="..\HiveStore.DTO\HiveStore.DTO.csproj" />
     <ProjectReference Include="..\HiveStore.IRepository\HiveStore.IRepository.csproj" />
     <ProjectReference Include="..\HiveStore.IService\HiveStore.IService.csproj" />
   </ItemGroup>
