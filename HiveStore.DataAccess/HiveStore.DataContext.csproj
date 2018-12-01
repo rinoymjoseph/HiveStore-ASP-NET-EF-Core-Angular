@@ -26,4 +26,8 @@
     <ProjectReference Include="..\HiveStore.Entity\HiveStore.Entity.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

@@ -2,9 +2,9 @@
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </div>
 <div class="panel panel-info">
-  <div class="panel-heading">Add/Edit Employee</div>
+  <div class="panel-heading">Add/Edit User</div>
   <div class="panel-body" id="divPrint">
-    <form [formGroup]="formEmployee">
+    <form [formGroup]="formUser">
       <div class="row">
         <div class="col-sm-6 col-md-6">
           <mat-input-container>
@@ -45,10 +45,10 @@
 </div>
 
 <div class="panel panel-info">
-  <div class="panel-heading">All Employees</div>
+  <div class="panel-heading">All Users</div>
   <div class="panel-body">
-    <p-table [value]="employees" [paginator]="true" [rows]="10" dataKey="Id" [(selection)]="selectedEmployee" selectionMode="single"
-             (onRowSelect)="gridEmployeesOnRowSelect($event)">
+    <p-table [value]="users" [paginator]="true" [rows]="10" dataKey="Id" [(selection)]="selectedUser" selectionMode="single"
+             (onRowSelect)="gridUsersOnRowSelect($event)">
       <ng-template pTemplate="header">
         <tr>
           <th>Id</th>

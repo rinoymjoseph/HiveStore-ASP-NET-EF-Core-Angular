@@ -1,13 +1,14 @@
 ﻿using HiveStore.DataAccess;
+using HiveStore.Entity.Identity;
 using HiveStore.Helper;
 using HiveStore.IHelper;
-using HiveStore.IRepository.Employee;
+using HiveStore.IRepository.Identity;
 using HiveStore.IRepository.Product;
-using HiveStore.IService.Employee;
+using HiveStore.IService.Identity;
 using HiveStore.IService.Product;
-using HiveStore.Repository.Employee;
+using HiveStore.Repository.Identity;
 using HiveStore.Repository.Product;
-using HiveStore.Service.Employee;
+using HiveStore.Service.Identity;
 using HiveStore.Service.Product;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -35,21 +36,28 @@ namespace HiveStore.Extension
 
         private static void ConfigureIdentity(IServiceCollection services)
         {
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<UserEntity, IdentityRole>()
                 .AddEntityFrameworkStores<HiveDataContext>()
                 .AddDefaultTokenProviders();
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 5;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+            });
         }
 
         private static void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IProductService, ProductService>();
-            services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         private static void ConfigureRepositories(IServiceCollection services)
         {
             services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
         }
 
         private static void ConfigureHelpers(IServiceCollection services)

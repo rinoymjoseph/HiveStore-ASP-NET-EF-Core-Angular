@@ -5,11 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.1.6" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HiveStore.Entity\HiveStore.Entity.csproj" />
     <ProjectReference Include="..\HiveStore.Helper\HiveStore.Helper.csproj" />
     <ProjectReference Include="..\HiveStore.IHelper\HiveStore.IHelper.csproj" />
     <ProjectReference Include="..\HiveStore.IRepository\HiveStore.IRepository.csproj" />

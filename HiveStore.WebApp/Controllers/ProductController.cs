@@ -12,7 +12,7 @@ namespace HiveStore.WebApp.Controllers
 {
     [Produces("application/json")]
     [Route("ProductAPI")]
-    public class ProductController : Controller
+    public class ProductController : ControllerBase
     {
         private IProductService ProductService;
         private IRequestInfoHelper RequestInfoHelper;

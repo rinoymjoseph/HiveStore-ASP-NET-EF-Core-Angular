@@ -15,9 +15,9 @@ namespace HiveStore.DataAccess.Configuration.Order
             builder.Property(p => p.Id).HasColumnName("ORDER_DETAILS_ID");
             builder.Property(p => p.OrderId).HasColumnName("ORDER_ID");
             builder.Property(p => p.ProductId).HasColumnName("PRODUCT_ID");
-            builder.Property(p => p.UnitPrice).HasColumnName("UNIT_PRICE");
+            builder.Property(p => p.UnitPrice).HasColumnName("UNIT_PRICE").HasColumnType("decimal(7,2)");
             builder.Property(p => p.Quantity).HasColumnName("QUANTITY");
-            builder.Property(p => p.Discount).HasColumnName("DISCOUNT");
+            builder.Property(p => p.Discount).HasColumnName("DISCOUNT").HasColumnType("decimal(2,2)");
             ConfigureBase(builder);
         }
     }

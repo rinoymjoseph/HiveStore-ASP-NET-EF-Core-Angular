@@ -50,7 +50,7 @@ export class ProductComponent implements OnInit {
   }
 
   gridProductsOnRowSelect(event) {
-    //console.log(this.selectedEmployee);
+    //console.log(this.selectedUser);
     this.formProduct.patchValue({
       ipProductName: this.selectedProduct.ProductName,
       ipUnitPrice: this.selectedProduct.UnitPrice

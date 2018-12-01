@@ -3,41 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HiveStore.DTO;
-using HiveStore.Entity.Identity;
 using HiveStore.IHelper;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.AspNetCore.Authorization;
+using HiveStore.IService.Identity;
+using HiveStore.Service.Identity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace HiveStore.WebApp.Controllers
 {
     [Produces("application/json")]
-    [Route("AccountAPI")]
-    public class AccountController : Controller
+    [Route("RoleAPI")]
+    public class RoleController : ControllerBase
     {
+        private readonly IRoleService _roleService;
         private readonly IRequestInfoHelper _requestInfoHelper;
-        private readonly SignInManager<UserEntity> _signInManager;
 
-        public AccountController(IRequestInfoHelper requestInfoHelper, SignInManager<UserEntity> signInManager)
+        public RoleController(IRoleService roleService)
         {
-            _requestInfoHelper = requestInfoHelper;
-            _signInManager = signInManager;
+            _roleService = roleService;
         }
 
-        [Route("SignIn")]
+        [Route("SaveRole")]
         [HttpPost]
-        public async Task<IActionResult> SignIn([FromBody] SignInDTO signInDTO)
+        public async Task<IActionResult> SaveRole([FromBody] IdentityRole identityRole)
         {
             BaseResponseDTO baseResponseDTO = new BaseResponseDTO();
             _requestInfoHelper.BindRequestInfo(HttpContext, baseResponseDTO);
 
             try
             {
-                //var result = await _signInManager.PasswordSignInAsync("admin", "admin", true, false);
-                var result = await _signInManager.PasswordSignInAsync(signInDTO.UserName, signInDTO.Password, true, false);
+                var result = await _roleService.SaveRole(identityRole);
                 baseResponseDTO.IsSuccess = true;
             }
             catch (Exception ex)
@@ -48,30 +45,28 @@ namespace HiveStore.WebApp.Controllers
             return Ok(baseResponseDTO);
         }
 
-        [Route("SignOut")]
-        public async Task<IActionResult> SignOut()
+        [Route("GetAllRoles")]
+        [HttpGet]
+        public IActionResult GetAllRoles()
         {
             BaseResponseDTO baseResponseDTO = new BaseResponseDTO();
+            List<IdentityRole> identityRoleList;
             _requestInfoHelper.BindRequestInfo(HttpContext, baseResponseDTO);
 
             try
             {
-                await _signInManager.SignOutAsync();
+                identityRoleList = _roleService.GetAllRoles();
                 baseResponseDTO.IsSuccess = true;
+                baseResponseDTO.Response = JsonConvert.SerializeObject(identityRoleList);
             }
             catch (Exception ex)
             {
                 baseResponseDTO.IsSuccess = false;
                 baseResponseDTO.Message = ex.Message;
             }
+
             return Ok(baseResponseDTO);
         }
 
-        [Route("GetUserDetails")]
-        public IActionResult GetUserDetails()
-        {
-            return Ok(User.Identity.Name);
-            //return Challenge("HiveStoreOpenIdAuthScheme");
-        }
     }
 }
