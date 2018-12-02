@@ -1,0 +1,46 @@
+<div class="loading" *ngIf="isLoading">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<div class="panel panel-info">
+  <div class="panel-heading">Add/Edit Role</div>
+  <div class="panel-body" id="divPrint">
+    <form [formGroup]="formRole">
+      <div class="row">
+        <div class="col-sm-6 col-md-6">
+          <mat-input-container>
+            <input matInput placeholder="Role Name" formControlName="ipRoleName" matTooltip="Role Name" required>
+            <mat-error>Role Name is required</mat-error>
+          </mat-input-container>
+        </div>
+      </div>
+      <div class="top-buffer-20"></div>
+      <div class="row">
+        <div class="col-sm-6">
+          <button id="btnSave" mat-raised-button name="btnSave" color="primary" (click)="btnSaveClick($event)">Save</button>
+          <button id="btnCancel" mat-raised-button name="btnCancel" (click)="btnCancelClick($event)">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="panel panel-info">
+  <div class="panel-heading">All Roles</div>
+  <div class="panel-body">
+    <p-table [value]="roles" [paginator]="true" [rows]="10" dataKey="Id" [(selection)]="selectedRole" selectionMode="single"
+             (onRowSelect)="gridRolessOnRowSelect($event)">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Id</th>
+          <th>Role Name</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-role>
+        <tr [pSelectableRow]="role">
+          <td>{{role.Id}}</td>
+          <td>{{role.Name}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

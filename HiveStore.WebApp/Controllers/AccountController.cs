@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace HiveStore.WebApp.Controllers
 {
@@ -67,11 +68,26 @@ namespace HiveStore.WebApp.Controllers
             return Ok(baseResponseDTO);
         }
 
-        [Route("GetUserDetails")]
-        public IActionResult GetUserDetails()
+        [HiveStoreAuthorize]
+        [Route("GetSignedInUser")]
+        public IActionResult GetSignedInUser()
         {
-            return Ok(User.Identity.Name);
-            //return Challenge("HiveStoreOpenIdAuthScheme");
+            BaseResponseDTO baseResponseDTO = new BaseResponseDTO();
+            _requestInfoHelper.BindRequestInfo(HttpContext, baseResponseDTO);
+
+            try
+            {
+                UserDTO userDTO = new UserDTO();
+                userDTO.UserName = User.Identity.Name;
+                baseResponseDTO.Response = JsonConvert.SerializeObject(userDTO);
+                baseResponseDTO.IsSuccess = true;
+            }
+            catch (Exception ex)
+            {
+                baseResponseDTO.IsSuccess = false;
+                baseResponseDTO.Message = ex.Message;
+            }
+            return Ok(baseResponseDTO);
         }
     }
 }

@@ -9,10 +9,10 @@ namespace HiveStore.Repository.Identity
 {
     public class UserRepository : BaseRepository, IUserRepository
     {
-        private readonly HiveDataContext HiveDataContext;
+        private readonly HiveDataContext _hiveDataContext;
         public UserRepository(HiveDataContext hiveDataContext) : base(hiveDataContext)
         {
-            HiveDataContext = hiveDataContext;
+            _hiveDataContext = hiveDataContext;
         }
 
         public void AddUser(UserEntity userEntity)
@@ -22,18 +22,18 @@ namespace HiveStore.Repository.Identity
                 throw new ArgumentNullException("userEntity");
             }
 
-            var set = HiveDataContext.Set<UserEntity>();
+            var set = _hiveDataContext.Set<UserEntity>();
             set.Add(userEntity);
         }
 
         public List<UserEntity> GetAllUsers()
         {
-            return HiveDataContext.Set<UserEntity>().ToList();
+            return _hiveDataContext.Set<UserEntity>().ToList();
         }
 
         public UserEntity GetUserById(string userId)
         {
-            return HiveDataContext.Set<UserEntity>().FirstOrDefault(x => x.Id.Equals(userId));
+            return _hiveDataContext.Set<UserEntity>().FirstOrDefault(x => x.Id.Equals(userId));
         }
     }
 }

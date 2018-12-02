@@ -10,10 +10,10 @@ namespace HiveStore.Repository.Product
 {
     public class ProductRepository : BaseRepository, IProductRepository
     {
-        private readonly HiveDataContext HiveDataContext;
+        private readonly HiveDataContext _hiveDataContext;
         public ProductRepository(HiveDataContext hiveDataContext) : base(hiveDataContext)
         {
-            HiveDataContext = hiveDataContext;
+            _hiveDataContext = hiveDataContext;
         }
 
         public void AddProduct(ProductEntity productEntity)
@@ -23,18 +23,18 @@ namespace HiveStore.Repository.Product
                 throw new ArgumentNullException("employeeEntity");
             }
 
-            var set = HiveDataContext.Set<ProductEntity>();
+            var set = _hiveDataContext.Set<ProductEntity>();
             set.Add(productEntity);
         }
 
         public List<ProductEntity> GetAllProducts()
         {
-            return HiveDataContext.Set<ProductEntity>().Where(x => !x.IsDeleted).ToList();
+            return _hiveDataContext.Set<ProductEntity>().Where(x => !x.IsDeleted).ToList();
         }
 
         public ProductEntity GetProductById(int productId)
         {
-            return HiveDataContext.Set<ProductEntity>().FirstOrDefault(x => x.Id.Equals(productId));
+            return _hiveDataContext.Set<ProductEntity>().FirstOrDefault(x => x.Id.Equals(productId));
         }
     }
 }

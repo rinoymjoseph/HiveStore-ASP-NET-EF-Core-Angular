@@ -1,21 +1,29 @@
-﻿using HiveStore.IRepository.Identity;
+﻿using HiveStore.DataAccess;
+using HiveStore.IRepository.Identity;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace HiveStore.Repository.Identity
 {
     public class RoleRepository : IRoleRepository
     {
-        public List<IdentityRole> GetAllRoles()
+        private readonly HiveDataContext _hiveDataContext;
+
+        public RoleRepository(HiveDataContext hiveDataContext)
         {
-            throw new NotImplementedException();
+            _hiveDataContext = hiveDataContext;
         }
 
-        public IdentityRole GetRoleById(string userId)
+        public List<IdentityRole> GetAllRoles()
         {
-            throw new NotImplementedException();
+            return _hiveDataContext.Set<IdentityRole>().ToList();
+        }
+
+        public IdentityRole GetRoleById(string roleId)
+        {
+            return _hiveDataContext.Set<IdentityRole>().FirstOrDefault(x => x.Id == roleId);
         }
     }
 }

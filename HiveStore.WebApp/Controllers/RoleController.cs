@@ -20,9 +20,10 @@ namespace HiveStore.WebApp.Controllers
         private readonly IRoleService _roleService;
         private readonly IRequestInfoHelper _requestInfoHelper;
 
-        public RoleController(IRoleService roleService)
+        public RoleController(IRoleService roleService, IRequestInfoHelper requestInfoHelper)
         {
             _roleService = roleService;
+            _requestInfoHelper = requestInfoHelper;
         }
 
         [Route("SaveRole")]

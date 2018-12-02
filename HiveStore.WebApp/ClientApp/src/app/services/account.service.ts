@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { AppSettings } from '../app.settings';
 import { BaseResponse } from '../models/base-response.model';
 import { SignIn } from '../models/sign-in.model';
+import { User } from '../models/user.model';
 import { BaseService } from '../services/base.service';
 
 export class AccountService extends BaseService {
@@ -22,6 +23,14 @@ export class AccountService extends BaseService {
 
   signOut(): Observable<string> {
     const url = AppSettings.SIGN_OUT_URL;
+
+    return this.http.get<BaseResponse>(url)
+      .map((res: BaseResponse) => this.extractData(res))
+      .catch((res: HttpErrorResponse) => this.handleError(res));
+  }
+
+  getSignedInUser(): Observable<User> {
+    const url = AppSettings.GET_SIGNED_IN_USER;
 
     return this.http.get<BaseResponse>(url)
       .map((res: BaseResponse) => this.extractData(res))

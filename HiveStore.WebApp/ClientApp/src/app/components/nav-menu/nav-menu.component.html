@@ -14,27 +14,32 @@
           <ul class='nav navbar-nav'>
             <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
               <a [routerLink]='["/"]' (click)='collapse()'>
-                <span class='glyphicon glyphicon-home'></span> Home
+                <span class="fa fa-home"></span> Home
               </a>
             </li>
             <li [routerLinkActive]='["link-active"]'>
               <a [routerLink]='["/user"]' (click)='collapse()'>
-                <span class='glyphicon glyphicon-education'></span> User
+                <span class="fa fa-user-o"></span> User
+              </a>
+            </li>
+            <li [routerLinkActive]='["link-active"]'>
+              <a [routerLink]='["/role"]' (click)='collapse()'>
+                <span class="fa fa-sitemap"></span> Role
               </a>
             </li>
             <li [routerLinkActive]='["link-active"]'>
               <a [routerLink]='["/product"]' (click)='collapse()'>
-                <span class='glyphicon glyphicon-education'></span> Product
+                <span class="fa fa-shopping-basket"></span> Product
               </a>
             </li>
             <li [routerLinkActive]='["link-active"]'>
               <a [routerLink]='["/order"]' (click)='collapse()'>
-                <span class='glyphicon glyphicon-education'></span> Order
+                <span class="fa fa-shopping-cart"></span> Order
               </a>
             </li>
             <li [routerLinkActive]='["link-active"]'>
               <a [routerLink]='["/login"]' (click)='signOut()'>
-                <span class='glyphicon glyphicon-education'></span> Logout
+                <span class="fa fa-sign-out"></span> Logout
               </a>
             </li>
           </ul>

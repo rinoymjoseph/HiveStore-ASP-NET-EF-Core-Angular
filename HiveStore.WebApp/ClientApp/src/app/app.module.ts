@@ -21,12 +21,16 @@ import { TableModule } from 'primeng/table';
 import { MessageModule } from 'primeng/message';
 
 import { AppComponent } from './app.component';
+import { routes } from '../app/app.routing';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { UserComponent } from './components/user/user.component';
 import { ProductComponent } from './components/product/product.component';
 import { OrderComponent } from './components/order/order.component';
 import { RequestInfoComponent } from './components/request-info/request-info.component';
 import { LoginComponent } from './components/login/login.component';
+import { RoleComponent } from './components/role/role.component';
+import { AuthGuard } from './services/auth.guard';
+import { AccountService } from './services/account.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,8 @@ import { LoginComponent } from './components/login/login.component';
     ProductComponent,
     OrderComponent,
     RequestInfoComponent,
-    LoginComponent
+    LoginComponent,
+    RoleComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -55,15 +60,9 @@ import { LoginComponent } from './components/login/login.component';
     ButtonModule,
     TableModule,
     MessageModule,
-    RouterModule.forRoot([
-      { path: '', component: UserComponent, pathMatch: 'full' },
-      { path: 'login', component: LoginComponent },
-      { path: 'user', component: UserComponent },
-      { path: 'product', component: ProductComponent },
-      { path: 'order', component: OrderComponent }
-    ])
+    RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [AuthGuard, AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

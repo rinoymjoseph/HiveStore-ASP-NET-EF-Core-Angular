@@ -31,14 +31,14 @@ namespace HiveStore.Service.Identity
                 if (_userEntity_saved == null)
                 {
                     UserEntity _userEntity = new UserEntity();
-                    MapUserDTOToUseEntity(userDTO, _userEntity);
+                    MapUserDTOToUserEntity(userDTO, _userEntity);
                     _userEntity.CreatedBy = System.Environment.UserName;
                     _userEntity.CreatedDate = DateTime.Now;
                     return await _userManager.CreateAsync(_userEntity, userDTO.Password);
                 }
                 else
                 {
-                    MapUserDTOToUseEntity(userDTO, _userEntity_saved);
+                    MapUserDTOToUserEntity(userDTO, _userEntity_saved);
                     var newPassword = _userManager.PasswordHasher.HashPassword(_userEntity_saved, userDTO.Password);
                     _userEntity_saved.PasswordHash = newPassword;
                     return await _userManager.UpdateAsync(_userEntity_saved);
@@ -86,7 +86,7 @@ namespace HiveStore.Service.Identity
             }
         }
 
-        private void MapUserDTOToUseEntity(UserDTO userDTO, UserEntity userEntity)
+        private void MapUserDTOToUserEntity(UserDTO userDTO, UserEntity userEntity)
         {
             userEntity.UserName = userDTO.UserName;
             userEntity.FirstName = userDTO.FirstName;

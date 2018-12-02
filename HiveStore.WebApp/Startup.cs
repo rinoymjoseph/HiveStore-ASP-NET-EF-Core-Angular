@@ -55,6 +55,9 @@ namespace HiveStore.WebApp
             app.UseSpaStaticFiles();
             app.UsePathBase(new Microsoft.AspNetCore.Http.PathString("/HiveStoreApp"));
 
+            app.UseCookiePolicy();
+            app.UseAuthentication();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

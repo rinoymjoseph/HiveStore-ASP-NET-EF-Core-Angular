@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace HiveStore.Extension
 {
@@ -36,6 +37,12 @@ namespace HiveStore.Extension
 
         private static void ConfigureIdentity(IServiceCollection services)
         {
+            services.AddMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(5);
+            });
+
             services.AddIdentity<UserEntity, IdentityRole>()
                 .AddEntityFrameworkStores<HiveDataContext>()
                 .AddDefaultTokenProviders();
@@ -52,12 +59,14 @@ namespace HiveStore.Extension
         {
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IRoleService, RoleService>();
         }
 
         private static void ConfigureRepositories(IServiceCollection services)
         {
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
         }
 
         private static void ConfigureHelpers(IServiceCollection services)

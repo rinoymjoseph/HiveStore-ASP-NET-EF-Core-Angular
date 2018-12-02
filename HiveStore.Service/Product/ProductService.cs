@@ -9,11 +9,11 @@ namespace HiveStore.Service.Product
 {
     public class ProductService : IProductService
     {
-        private IProductRepository ProductRepository;
+        private readonly IProductRepository _productRepository;
 
         public ProductService(IProductRepository productRepository)
         {
-            ProductRepository = productRepository;
+            _productRepository = productRepository;
         }
 
         public void SaveProduct(ProductEntity productEntity)
@@ -22,7 +22,7 @@ namespace HiveStore.Service.Product
             {
                 if (productEntity.Id > 0)
                 {
-                    ProductEntity productEntity_saved = ProductRepository.GetProductById(productEntity.Id);
+                    ProductEntity productEntity_saved = _productRepository.GetProductById(productEntity.Id);
                     productEntity_saved.ProductName = productEntity.ProductName;
                     productEntity_saved.UnitPrice = productEntity.UnitPrice;
                     productEntity_saved.ModifiedBy = System.Environment.UserName;
@@ -34,9 +34,9 @@ namespace HiveStore.Service.Product
                     productEntity.ModifiedBy = System.Environment.UserName;
                     productEntity.CreatedDate = DateTime.Now;
                     productEntity.ModifiedDate = DateTime.Now;
-                    ProductRepository.AddProduct(productEntity);
+                    _productRepository.AddProduct(productEntity);
                 }
-                ProductRepository.SaveChanges();
+                _productRepository.SaveChanges();
             }
             catch (Exception)
             {
@@ -47,12 +47,12 @@ namespace HiveStore.Service.Product
 
         public List<ProductEntity> GetAllProducts()
         {
-            return ProductRepository.GetAllProducts();
+            return _productRepository.GetAllProducts();
         }
 
         public ProductEntity GetProductById(int productId)
         {
-            return ProductRepository.GetProductById(productId);
+            return _productRepository.GetProductById(productId);
         }
     }
 }
