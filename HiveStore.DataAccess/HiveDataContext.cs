@@ -22,8 +22,7 @@ namespace HiveStore.DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer(@"Server=LIN35005716\SQLEXPRESS;Database=Hive;Trusted_Connection=True");
-            optionsBuilder.UseSqlServer(@"Server=JOSEPHR2\SQLEXPRESS;Database=Hive_New;Trusted_Connection=True");
+            optionsBuilder.UseSqlServer(@"Server=JOSEPHR2\SQLEXPRESS;Database=Hive;Trusted_Connection=True");
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
