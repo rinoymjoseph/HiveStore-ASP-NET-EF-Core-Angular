@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:sdk as build-env
+FROM microsoft/dotnet:2.2-sdk as build-env
 WORKDIR /app
 
 # Setup node
@@ -52,7 +52,7 @@ WORKDIR /app/HiveStore.WebApp
 RUN dotnet publish -c Release -o out
 
 # Build runtime image
-FROM microsoft/dotnet:aspnetcore-runtime
+FROM microsoft/dotnet:2.2-aspnetcore-runtime
 WORKDIR /app
 COPY --from=build-env /app/HiveStore.WebApp/out .
 ENV ASPNETCORE_URLS=http://*:5000

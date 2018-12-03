@@ -28,7 +28,7 @@
   <div class="panel-heading">All Roles</div>
   <div class="panel-body">
     <p-table [value]="roles" [paginator]="true" [rows]="10" dataKey="Id" [(selection)]="selectedRole" selectionMode="single"
-             (onRowSelect)="gridRolessOnRowSelect($event)">
+             (onRowSelect)="gridRolesOnRowSelect($event)">
       <ng-template pTemplate="header">
         <tr>
           <th>Id</th>
