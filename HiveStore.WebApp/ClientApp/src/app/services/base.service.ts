@@ -28,6 +28,7 @@ export class BaseService {
       requestInfo.RemoteIpAddress = res.RemoteIpAddress;
       requestInfo.RemotePort = res.RemotePort;
       requestInfo.RequestPath = res.RequestPath;
+      requestInfo.SignedInTime = res.SignedInTime;
       AppSettings.RequestInfoEvent.next(requestInfo);
       return JSON.parse(res.Response);
     } else {

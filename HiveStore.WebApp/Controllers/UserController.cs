@@ -2,6 +2,7 @@
 using HiveStore.Entity.Identity;
 using HiveStore.IHelper;
 using HiveStore.IService.Identity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -30,6 +31,7 @@ namespace HiveStore.WebApp.Controllers
             BaseResponseDTO baseResponseDTO = new BaseResponseDTO();
             List<UserEntity> userList;
             _requestInfoHelper.BindRequestInfo(HttpContext, baseResponseDTO);
+            string val = HttpContext.Session.GetString("SignedInTime");
 
             try
             {

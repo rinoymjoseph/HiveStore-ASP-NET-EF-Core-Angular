@@ -8,4 +8,5 @@ export class BaseResponse {
   RemotePort: string;
   LocalPort: string;
   RequestPath: string;
+  SignedInTime:string;
 }

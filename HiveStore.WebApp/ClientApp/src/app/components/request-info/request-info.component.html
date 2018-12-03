@@ -10,6 +10,7 @@
           <th>LocalPort</th>
           <th>RemoteIpAddress</th>
           <th>RemotePort</th>
+          <th>SignedInTime</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-req>
@@ -20,6 +21,7 @@
           <td>{{req.LocalPort}}</td>
           <td>{{req.RemoteIpAddress}}</td>
           <td>{{req.RemotePort}}</td>
+          <td>{{req.SignedInTime}}</td>
         </tr>
       </ng-template>
     </p-table>

@@ -16,5 +16,6 @@ namespace HiveStore.DTO
         public int RemotePort { get; set; }
         public int LocalPort { get; set; }
         public string RequestPath { get; set; }
+        public string SignedInTime { get; set; }
     }
 }

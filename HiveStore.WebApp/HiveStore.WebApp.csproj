@@ -19,6 +19,7 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.6" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.6" />
   </ItemGroup>
@@ -34,7 +35,35 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\app.routing.js" />
+    <None Remove="ClientApp\src\app\app.routing.js" />
+    <None Remove="ClientApp\src\app\app.routing.js.map" />
+    <None Remove="ClientApp\src\app\app.routing.js.map" />
     <None Remove="ClientApp\src\app\app.routing.ts" />
+    <None Remove="ClientApp\src\app\app.settings.js" />
+    <None Remove="ClientApp\src\app\app.settings.js" />
+    <None Remove="ClientApp\src\app\app.settings.js.map" />
+    <None Remove="ClientApp\src\app\app.settings.js.map" />
+    <None Remove="ClientApp\src\app\services\account.service.js" />
+    <None Remove="ClientApp\src\app\services\account.service.js" />
+    <None Remove="ClientApp\src\app\services\account.service.js.map" />
+    <None Remove="ClientApp\src\app\services\account.service.js.map" />
+    <None Remove="ClientApp\src\app\services\infrastructure.service.js" />
+    <None Remove="ClientApp\src\app\services\infrastructure.service.js" />
+    <None Remove="ClientApp\src\app\services\infrastructure.service.js.map" />
+    <None Remove="ClientApp\src\app\services\infrastructure.service.js.map" />
+    <None Remove="ClientApp\src\app\services\product.service.js" />
+    <None Remove="ClientApp\src\app\services\product.service.js" />
+    <None Remove="ClientApp\src\app\services\product.service.js.map" />
+    <None Remove="ClientApp\src\app\services\product.service.js.map" />
+    <None Remove="ClientApp\src\app\services\role.service.js" />
+    <None Remove="ClientApp\src\app\services\role.service.js" />
+    <None Remove="ClientApp\src\app\services\role.service.js.map" />
+    <None Remove="ClientApp\src\app\services\role.service.js.map" />
+    <None Remove="ClientApp\src\app\services\user.service.js" />
+    <None Remove="ClientApp\src\app\services\user.service.js" />
+    <None Remove="ClientApp\src\app\services\user.service.js.map" />
+    <None Remove="ClientApp\src\app\services\user.service.js.map" />
   </ItemGroup>
 
   <ItemGroup>

@@ -30,6 +30,7 @@ namespace HiveStore.Helper
                 baseResponseDTO.RemoteIpAddress = httpConnectionFeature.RemoteIpAddress.MapToIPv4().ToString();
                 baseResponseDTO.RemotePort = httpConnectionFeature.RemotePort;
                 baseResponseDTO.RequestPath = httpContext.Request.Path.Value;
+                baseResponseDTO.SignedInTime = httpContext.Session.GetString("SignedInTime");
             }
             catch (Exception)
             {

@@ -11,6 +11,19 @@ RUN curl -SL "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-lin
     && rm nodejs.tar.gz \
     && ln -s /usr/local/bin/node /usr/local/bin/nodejs
 
+# Copy package.json and package-lock.json files from ClientApp
+COPY HiveStore.WebApp/ClientApp/package.json HiveStore.WebApp/ClientApp/
+COPY HiveStore.WebApp/ClientApp/package-lock.json HiveStore.WebApp/ClientApp/
+
+# Change work directory to client app
+WORKDIR /app/HiveStore.WebApp/ClientApp
+
+# Run npm install
+RUN npm install
+
+# Change the work directory to app
+WORKDIR /app
+
 # Copy csproj files of each project
 COPY HiveStore.DTO/HiveStore.DTO.csproj HiveStore.DTO/
 COPY HiveStore.Entity/HiveStore.Entity.csproj HiveStore.Entity/
@@ -26,18 +39,6 @@ COPY HiveStore.WebApp/HiveStore.WebApp.csproj HiveStore.WebApp/
 
 # Run dotnet restore on HiveStore.WebApp project file
 RUN dotnet restore HiveStore.WebApp/HiveStore.WebApp.csproj
-
-# Copy package.json file from ClientApp
-COPY HiveStore.WebApp/ClientApp/package.json HiveStore.WebApp/ClientApp/
-
-# Change work directory to client app
-WORKDIR /app/HiveStore.WebApp/ClientApp
-
-# Run npm install
-RUN npm install
-
-# Change the work directory to app
-WORKDIR /app
 
 # Copy all files to app directory
 COPY . .

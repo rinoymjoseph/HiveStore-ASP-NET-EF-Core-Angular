@@ -5,4 +5,5 @@ export class RequestInfo {
   RemotePort: string;
   LocalPort: string;
   RequestPath: string;
+  SignedInTime: string;
 }

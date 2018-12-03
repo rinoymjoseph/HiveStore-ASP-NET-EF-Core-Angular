@@ -22,6 +22,7 @@ services:
       - hive-network
     depends_on:
       - hivestoredb
+      - redisdb
   
   hivestoredb:
     build:
@@ -32,6 +33,14 @@ services:
             ACCEPT_EULA: "Y"
     ports:
       - "1433:1433"
+    networks:
+      - hive-network
+  
+  redisdb:
+    build:
+      context: ../Redis
+    ports:
+       - "6379:6379"
     networks:
       - hive-network
 

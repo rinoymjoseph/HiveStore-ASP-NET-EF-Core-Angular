@@ -40,6 +40,7 @@ namespace HiveStore.WebApp.Controllers
                 //var result = await _signInManager.PasswordSignInAsync("admin", "admin", true, false);
                 var result = await _signInManager.PasswordSignInAsync(signInDTO.UserName, signInDTO.Password, true, false);
                 baseResponseDTO.IsSuccess = true;
+                HttpContext.Session.SetString("SignedInTime", DateTime.Now.ToString("dd-MMM-yyyy HH:mm:ss"));
             }
             catch (Exception ex)
             {

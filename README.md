@@ -18,3 +18,7 @@ C:\projects\github\HiveStore-ASP-NET-EF-Core-Angular> docker-compose -f .\Docker
 docker-compose -f .\Docker\prod-lb.docker-compose.yml build
 docker-compose -f .\Docker\prod-lb.docker-compose.yml up
 docker-compose -f .\Docker\prod-lb.docker-compose.yml down
+
+Redis
+------
+ .\redis-cli.exe -h 127.0.0.1 -p 6379

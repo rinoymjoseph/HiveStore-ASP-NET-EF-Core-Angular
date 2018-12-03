@@ -57,6 +57,7 @@ namespace HiveStore.WebApp
 
             app.UseCookiePolicy();
             app.UseAuthentication();
+            app.UseSession();
 
             app.UseMvc(routes =>
             {

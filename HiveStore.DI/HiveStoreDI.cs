@@ -10,10 +10,12 @@ using HiveStore.Repository.Identity;
 using HiveStore.Repository.Product;
 using HiveStore.Service.Identity;
 using HiveStore.Service.Product;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using StackExchange.Redis;
 using System;
 
 namespace HiveStore.Extension
@@ -23,7 +25,7 @@ namespace HiveStore.Extension
         public static void Configure(this IServiceCollection services, IConfiguration configuration)
         {
             ConfigureDBContexts(services, configuration);
-            ConfigureIdentity(services);
+            ConfigureIdentity(services, configuration);
             ConfigureRepositories(services);
             ConfigureServices(services);
             ConfigureHelpers(services);
@@ -35,13 +37,25 @@ namespace HiveStore.Extension
                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
         }
 
-        private static void ConfigureIdentity(IServiceCollection services)
+        private static void ConfigureIdentity(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddMemoryCache();
+            var redis = ConnectionMultiplexer.Connect(configuration.GetConnectionString("RedisConnection"));
+            //services.AddMemoryCache();
             services.AddSession(options =>
             {
+                options.Cookie.Name = ".HiveStoreWebApp.Session";
                 options.IdleTimeout = TimeSpan.FromMinutes(5);
             });
+            services.AddDistributedSqlServerCache(options =>
+            {
+                options.ConnectionString = configuration.GetConnectionString("DefaultConnection");
+                options.SchemaName = "dbo";
+                options.TableName = "SQLSessions";
+            });
+
+            services.AddDataProtection()
+                .SetApplicationName("HiveStoreApp")
+                .PersistKeysToRedis(redis, "DataProtection-Keys");
 
             services.AddIdentity<UserEntity, IdentityRole>()
                 .AddEntityFrameworkStores<HiveDataContext>()
