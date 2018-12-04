@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HiveStore.DTO;
+﻿using HiveStore.DTO;
 using HiveStore.Entity.Identity;
 using HiveStore.IHelper;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System;
+using System.Threading.Tasks;
 
 namespace HiveStore.WebApp.Controllers
 {
@@ -37,7 +32,6 @@ namespace HiveStore.WebApp.Controllers
 
             try
             {
-                //var result = await _signInManager.PasswordSignInAsync("admin", "admin", true, false);
                 var result = await _signInManager.PasswordSignInAsync(signInDTO.UserName, signInDTO.Password, true, false);
                 baseResponseDTO.IsSuccess = true;
                 HttpContext.Session.SetString("SignedInTime", DateTime.Now.ToString("dd-MMM-yyyy HH:mm:ss"));

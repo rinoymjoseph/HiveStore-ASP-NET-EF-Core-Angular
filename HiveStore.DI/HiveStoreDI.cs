@@ -11,6 +11,8 @@ using HiveStore.Repository.Product;
 using HiveStore.Service.Identity;
 using HiveStore.Service.Product;
 using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -22,9 +24,10 @@ namespace HiveStore.Extension
 {
     public static class HiveStoreDI
     {
-        public static void Configure(this IServiceCollection services, IConfiguration configuration)
+        public static void Configure(this IServiceCollection services, IConfiguration configuration, IHostingEnvironment env)
         {
             ConfigureDBContexts(services, configuration);
+            ConfigureSession(services, configuration,env);
             ConfigureIdentity(services, configuration);
             ConfigureRepositories(services);
             ConfigureServices(services);
@@ -37,14 +40,27 @@ namespace HiveStore.Extension
                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
         }
 
-        private static void ConfigureIdentity(IServiceCollection services, IConfiguration configuration)
+        private static void ConfigureSession(IServiceCollection services, IConfiguration configuration, IHostingEnvironment env)
         {
-            var redis = ConnectionMultiplexer.Connect(configuration.GetConnectionString("RedisConnection"));
-            //services.AddMemoryCache();
+            //If Environment is Development then used Memorycache else use redis 
+            if (env.IsDevelopment())
+            {
+                services.AddMemoryCache();
+            }
+            else
+            {
+                var redis = ConnectionMultiplexer.Connect(configuration.GetConnectionString("RedisConnection"));
+                services.AddDataProtection()
+                    .SetApplicationName("HiveStoreApp")
+                    .PersistKeysToRedis(redis, "DataProtection-Keys");
+            }
+
+            int loginExpireTimeSpan = Int32.Parse(configuration?.GetSection("AppSettings")?["LoginExpireTimeSpan"]);
+
             services.AddSession(options =>
             {
                 options.Cookie.Name = ".HiveStoreWebApp.Session";
-                options.IdleTimeout = TimeSpan.FromMinutes(5);
+                options.IdleTimeout = TimeSpan.FromMinutes(loginExpireTimeSpan);
             });
             services.AddDistributedSqlServerCache(options =>
             {
@@ -52,14 +68,25 @@ namespace HiveStore.Extension
                 options.SchemaName = "dbo";
                 options.TableName = "SQLSessions";
             });
+        }
 
-            services.AddDataProtection()
-                .SetApplicationName("HiveStoreApp")
-                .PersistKeysToRedis(redis, "DataProtection-Keys");
+        private static void ConfigureIdentity(IServiceCollection services, IConfiguration configuration)
+        {
+            int loginExpireTimeSpan = Int32.Parse(configuration?.GetSection("AppSettings")?["LoginExpireTimeSpan"]);
 
             services.AddIdentity<UserEntity, IdentityRole>()
                 .AddEntityFrameworkStores<HiveDataContext>()
                 .AddDefaultTokenProviders();
+
+            services.Configure<SecurityStampValidatorOptions>(options => options.ValidationInterval = TimeSpan.FromSeconds(10));
+
+            services.AddAuthentication()
+                 .Services.ConfigureApplicationCookie(options =>
+                {
+                    options.SlidingExpiration = true;
+                    options.ExpireTimeSpan = TimeSpan.FromMinutes(loginExpireTimeSpan);
+                });
+
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = false;

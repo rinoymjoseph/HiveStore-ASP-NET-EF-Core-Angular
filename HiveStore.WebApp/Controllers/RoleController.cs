@@ -26,6 +26,7 @@ namespace HiveStore.WebApp.Controllers
             _requestInfoHelper = requestInfoHelper;
         }
 
+        [HiveStoreAuthorize]
         [Route("SaveRole")]
         [HttpPost]
         public async Task<IActionResult> SaveRole([FromBody] IdentityRole identityRole)
@@ -46,6 +47,7 @@ namespace HiveStore.WebApp.Controllers
             return Ok(baseResponseDTO);
         }
 
+        [HiveStoreAuthorize]
         [Route("GetAllRoles")]
         [HttpGet]
         public IActionResult GetAllRoles()

@@ -12,10 +12,9 @@ export const routes: Routes = [
   { path: '', component: UserComponent, pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
+  { path: 'role', component: RoleComponent, canActivate: [AuthGuard] },
   { path: 'product', component: ProductComponent, canActivate: [AuthGuard] },
-  { path: 'order', component: OrderComponent },
-  { path: 'user', component: UserComponent },
-  { path: 'role', component: RoleComponent },
+  { path: 'order', component: OrderComponent, canActivate: [AuthGuard] }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);

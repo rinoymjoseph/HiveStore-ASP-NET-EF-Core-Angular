@@ -23,6 +23,7 @@ namespace HiveStore.WebApp.Controllers
             RequestInfoHelper = requestInfoHelper;
         }
 
+        [HiveStoreAuthorize]
         [Route("GetAllProducts")]
         [HttpGet]
         public IActionResult GetAllProducts()
@@ -46,6 +47,7 @@ namespace HiveStore.WebApp.Controllers
             return Ok(baseResponseDTO);
         }
 
+        [HiveStoreAuthorize]
         [Route("SaveProduct")]
         [HttpPost]
         public IActionResult SaveProduct([FromBody] ProductEntity productEntity)

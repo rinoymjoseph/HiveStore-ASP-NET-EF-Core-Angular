@@ -4,13 +4,13 @@
     <p-table [value]="requests" [paginator]="true" [rows]="10" dataKey="ConnectionId">
       <ng-template pTemplate="header">
         <tr>
-          <th>RequestPath</th>
-          <th>ConnectionId</th>
-          <th>LocalIpAddress</th>
-          <th>LocalPort</th>
-          <th>RemoteIpAddress</th>
-          <th>RemotePort</th>
-          <th>SignedInTime</th>
+          <th style="width:25%">RequestPath</th>
+          <th style="width:10%">ConnectionId</th>
+          <th style="width:15%">LocalIpAddress</th>
+          <th style="width:10%">LocalPort</th>
+          <th style="width:15%">RemoteIpAddress</th>
+          <th style="width:10%">RemotePort</th>
+          <th style="width:15%">SignedInTime</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-req>

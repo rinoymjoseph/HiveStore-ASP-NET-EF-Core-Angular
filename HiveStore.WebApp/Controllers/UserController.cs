@@ -24,6 +24,7 @@ namespace HiveStore.WebApp.Controllers
             _requestInfoHelper = serverInfoHelper;
         }
 
+        [HiveStoreAuthorize]
         [Route("GetAllUsers")]
         [HttpGet]
         public IActionResult GetAllUsers()
@@ -48,6 +49,7 @@ namespace HiveStore.WebApp.Controllers
             return Ok(baseResponseDTO);
         }
 
+        [HiveStoreAuthorize]
         [Route("SaveUser")]
         [HttpPost]
         public async Task<IActionResult> SaveUser([FromBody] UserDTO userDTO)
