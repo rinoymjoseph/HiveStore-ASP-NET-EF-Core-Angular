@@ -1,8 +1,6 @@
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/of';
-import { Observable } from 'rxjs/Observable';
+import { HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { map, catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { AppSettings } from '../app.settings';
 import { BaseResponse } from '../models/base-response.model';
 import { BaseService } from '../services/base.service';
@@ -11,20 +9,34 @@ import { User } from '../models/user.model';
 export class UserService extends BaseService {
 
   getAllUsers(): Observable<[User]> {
-    const getAllUsersURL = AppSettings.GET_ALL_EMPLOYEES_URL;
+    const url = AppSettings.GET_ALL_EMPLOYEES_URL;
 
-    return this.http.get<BaseResponse>(getAllUsersURL)
-      .map((res: BaseResponse) => this.extractData(res))
-      .catch((res: HttpErrorResponse) => this.handleError(res));
+    return this.http.get<BaseResponse>(url).pipe(
+      map((res: BaseResponse) => this.extractData(res)),
+      catchError((res: HttpErrorResponse) => this.handleError(res))
+    );
   }
 
   saveUser(employee: User): Observable<string> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json' })
     };
-    const saveUserURL = AppSettings.SAVE_EMPLOYEE_URL;
-    return this.http.post<BaseResponse>(saveUserURL, employee, httpOptions)
-      .map((res: BaseResponse) => this.extractData(res))
-      .catch((res: HttpErrorResponse) => this.handleError(res));
+    const url = AppSettings.SAVE_EMPLOYEE_URL;
+    return this.http.post<BaseResponse>(url, employee, httpOptions).pipe(
+      map((res: BaseResponse) => this.extractData(res)),
+      catchError((res: HttpErrorResponse) => this.handleError(res))
+    );
+  }
+
+  getCountryList(): Observable<any> {
+    const url = './app/assets/data/countries.json';
+
+    return this.http.get<any>(url).pipe(
+      map((res) =>
+      {
+        return res;
+      }),
+      catchError((res: HttpErrorResponse) => this.handleError(res))
+    );
   }
 }

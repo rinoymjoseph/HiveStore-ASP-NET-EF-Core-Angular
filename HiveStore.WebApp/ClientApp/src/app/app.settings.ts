@@ -1,4 +1,4 @@
-import { Subject } from "rxjs/Subject";
+import { Subject } from "rxjs";
 import { RequestInfo } from "./models/request-info.model";
 
 export class AppSettings {

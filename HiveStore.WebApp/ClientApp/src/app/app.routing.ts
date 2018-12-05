@@ -15,6 +15,13 @@ export const routes: Routes = [
   { path: 'role', component: RoleComponent, canActivate: [AuthGuard] },
   { path: 'product', component: ProductComponent, canActivate: [AuthGuard] },
   { path: 'order', component: OrderComponent, canActivate: [AuthGuard] }
+
+  //{ path: '', component: UserComponent, pathMatch: 'full' },
+  //{ path: 'login', component: LoginComponent },
+  //{ path: 'user', component: UserComponent },
+  //{ path: 'role', component: RoleComponent },
+  //{ path: 'product', component: ProductComponent },
+  //{ path: 'order', component: OrderComponent }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);

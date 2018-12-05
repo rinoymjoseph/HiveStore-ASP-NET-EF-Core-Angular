@@ -3,6 +3,9 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { User } from '../../models/user.model';
 import { UserService } from '../../services/user.service';
 import { AppSettings } from '../../app.settings';
+import { Observable } from 'rxjs';
+import { startWith } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user',
@@ -17,17 +20,24 @@ export class UserComponent implements OnInit {
   users: User[];
   formdata1: FormData;
   selectedUser: User;
+  countryJSON: any;
+  countries: string[] = [];
+  autoCountries: Observable<string[]>;
+  cities: string[] = [];
+  autoCities: Observable<string[]>;
 
   constructor(
     private el: ElementRef,
     private fb: FormBuilder,
     private userService: UserService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     AppSettings.IsLoginPageEvent.next(false);
     this.createUserForm();
     this.getAllUsers();
+    this.getCountries();
   }
 
   createUserForm() {
@@ -36,9 +46,24 @@ export class UserComponent implements OnInit {
       ipPassword: [],
       ipFirstName: [],
       ipLastName: [],
-      ipCountry: [],
+      //ipCountry: [],
+      autoCountry: [],
+      autoCity: [],
       ipCity: []
     });
+  }
+
+  countrySelectionChanged(event: any) {
+    if (event.source.selected === true) {
+      this.cities = this.countryJSON[event.source.value];
+
+      this.formUser.controls["autoCity"].reset(null, { onlySelf: true, emitEvent: false });
+
+      this.autoCities = this.formUser.controls["autoCity"].valueChanges
+        .pipe(
+          startWith(''),
+          map(filterStr => filterStr ? this.filterCities(filterStr) : this.cities.slice(0,10)));
+    }
   }
 
   btnSaveClick(event: any) {
@@ -69,6 +94,37 @@ export class UserComponent implements OnInit {
       ipCountry: this.selectedUser.Country,
       ipCity: this.selectedUser.City
     });
+  }
+
+  getCountries() {
+    this.userService.getCountryList().subscribe(
+      (res) => {
+        //console.log(res);
+        this.countryJSON = res;
+        this.countries = Object.keys(this.countryJSON);
+
+        this.autoCountries = this.formUser.controls["autoCountry"].valueChanges
+          .pipe(
+            startWith(''),
+            map(filterStr => filterStr ? this.filterCountries(filterStr) : this.countries.slice(0,10)));
+
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  filterCountries(filterStr: string): string[] {
+    console.log('Country Filter String : ' + filterStr);
+    return this.countries.filter(country =>
+      country.toLowerCase().indexOf(filterStr.toLowerCase()) === 0).slice(0,10);
+  }
+
+  filterCities(filterStr: string): string[] {
+    console.log('City Filter String : ' + filterStr);
+    return this.cities.filter(city =>
+      city.toLowerCase().indexOf(filterStr.toLowerCase()) === 0).slice(0,10);
   }
 
   getAllUsers() {

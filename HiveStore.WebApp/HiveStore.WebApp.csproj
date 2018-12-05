@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <IsPackable>false</IsPackable>
@@ -10,68 +10,25 @@
 
     <!-- Set this to true if you enable server-side prerendering -->
     <BuildServerSideRenderer>false</BuildServerSideRenderer>
-    <AssemblyName>HiveStore.WebApp</AssemblyName>
-    <RootNamespace>HiveStore.WebApp</RootNamespace>
-    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.6" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.6" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
     <Content Remove="$(SpaRoot)**" />
+    <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="ClientApp\src\app\app.routing.js" />
-    <None Remove="ClientApp\src\app\app.routing.js" />
-    <None Remove="ClientApp\src\app\app.routing.js.map" />
-    <None Remove="ClientApp\src\app\app.routing.js.map" />
-    <None Remove="ClientApp\src\app\app.routing.ts" />
-    <None Remove="ClientApp\src\app\app.settings.js" />
-    <None Remove="ClientApp\src\app\app.settings.js" />
-    <None Remove="ClientApp\src\app\app.settings.js.map" />
-    <None Remove="ClientApp\src\app\app.settings.js.map" />
-    <None Remove="ClientApp\src\app\services\account.service.js" />
-    <None Remove="ClientApp\src\app\services\account.service.js" />
-    <None Remove="ClientApp\src\app\services\account.service.js.map" />
-    <None Remove="ClientApp\src\app\services\account.service.js.map" />
-    <None Remove="ClientApp\src\app\services\infrastructure.service.js" />
-    <None Remove="ClientApp\src\app\services\infrastructure.service.js" />
-    <None Remove="ClientApp\src\app\services\infrastructure.service.js.map" />
-    <None Remove="ClientApp\src\app\services\infrastructure.service.js.map" />
-    <None Remove="ClientApp\src\app\services\product.service.js" />
-    <None Remove="ClientApp\src\app\services\product.service.js" />
-    <None Remove="ClientApp\src\app\services\product.service.js.map" />
-    <None Remove="ClientApp\src\app\services\product.service.js.map" />
-    <None Remove="ClientApp\src\app\services\role.service.js" />
-    <None Remove="ClientApp\src\app\services\role.service.js" />
-    <None Remove="ClientApp\src\app\services\role.service.js.map" />
-    <None Remove="ClientApp\src\app\services\role.service.js.map" />
-    <None Remove="ClientApp\src\app\services\user.service.js" />
-    <None Remove="ClientApp\src\app\services\user.service.js" />
-    <None Remove="ClientApp\src\app\services\user.service.js.map" />
-    <None Remove="ClientApp\src\app\services\user.service.js.map" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\HiveStore.DI\HiveStore.DI.csproj" />
     <ProjectReference Include="..\HiveStore.DTO\HiveStore.DTO.csproj" />
-    <ProjectReference Include="..\HiveStore.Entity\HiveStore.Entity.csproj" />
-    <ProjectReference Include="..\HiveStore.IHelper\HiveStore.IHelper.csproj" />
     <ProjectReference Include="..\HiveStore.IService\HiveStore.IService.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\app.routing.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

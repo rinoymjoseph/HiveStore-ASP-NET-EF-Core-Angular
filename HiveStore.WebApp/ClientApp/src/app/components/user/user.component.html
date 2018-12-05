@@ -7,40 +7,57 @@
     <form [formGroup]="formUser">
       <div class="row">
         <div class="col-sm-4 col-md-4">
-          <mat-input-container>
+          <mat-form-field>
             <input matInput placeholder="User Name" formControlName="ipUserName" matTooltip="User Name" required>
             <mat-error>User Name is required</mat-error>
-          </mat-input-container>
+          </mat-form-field>
         </div>
         <div class="col-sm-4 col-md-4">
-          <mat-input-container>
+          <mat-form-field>
             <input matInput placeholder="Password" formControlName="ipPassword" matTooltip="Password" required>
             <mat-error>Last Name is required</mat-error>
-          </mat-input-container>
+          </mat-form-field>
         </div>
         <div class="col-sm-4 col-md-4">
-          <mat-input-container>
+          <!--<mat-form-field>
             <input matInput placeholder="Country" formControlName="ipCountry" matTooltip="Country">
-          </mat-input-container>
+          </mat-form-field>-->
+          <mat-form-field>
+            <input matInput placeholder="Country" aria-label="Country" [matAutocomplete]="autoCountry" formControlName="autoCountry">
+            <mat-autocomplete #autoCountry="matAutocomplete">
+              <mat-option *ngFor="let country of autoCountries | async" [value]="country" (onSelectionChange)="countrySelectionChanged($event)">
+                {{ country }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-4 col-md-4">
-          <mat-input-container>
+          <mat-form-field>
             <input matInput placeholder="First Name" formControlName="ipFirstName" matTooltip="First Name" required>
             <mat-error>First Name is required</mat-error>
-          </mat-input-container>
+          </mat-form-field>
         </div>
         <div class="col-sm-4 col-md-4">
-          <mat-input-container>
+          <mat-form-field>
             <input matInput placeholder="Last Name" formControlName="ipLastName" matTooltip="Last Name" required>
             <mat-error>Last Name is required</mat-error>
-          </mat-input-container>
+          </mat-form-field>
         </div>
         <div class="col-sm-4 col-md-4">
-          <mat-input-container>
+          <!--<mat-form-field>
             <input matInput placeholder="City" formControlName="ipCity" matTooltip="City">
-          </mat-input-container>
+          </mat-form-field>-->
+          <mat-form-field>
+            <input matInput placeholder="City" aria-label="City" [matAutocomplete]="autoCity" formControlName="autoCity">
+            <mat-error>City is required</mat-error>
+            <mat-autocomplete #autoCity="matAutocomplete">
+              <mat-option *ngFor="let city of autoCities | async" [value]="city">
+                {{ city }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
         </div>
       </div>
       <div class="top-buffer-20"></div>

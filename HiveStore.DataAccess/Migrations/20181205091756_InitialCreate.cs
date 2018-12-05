@@ -29,20 +29,20 @@ namespace HiveStore.DataContext.Migrations
                 name: "AspNetUsers",
                 columns: table => new
                 {
-                    UserName = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
-                    Email = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(nullable: false),
-                    PasswordHash = table.Column<string>(nullable: true),
-                    SecurityStamp = table.Column<string>(nullable: true),
-                    ConcurrencyStamp = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
-                    LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false),
+                    USER_NAME = table.Column<string>(maxLength: 256, nullable: true),
+                    NORMALIZED_USER_NAME = table.Column<string>(maxLength: 256, nullable: true),
+                    EMAIL = table.Column<string>(maxLength: 256, nullable: true),
+                    NORMALIZED_EMAIL = table.Column<string>(maxLength: 256, nullable: true),
+                    EMAIL_CONFIRMED = table.Column<bool>(nullable: false),
+                    PASSWORD_HASH = table.Column<string>(nullable: true),
+                    SECURITY_STAMP = table.Column<string>(nullable: true),
+                    CONCURRENCY_STAMP = table.Column<string>(nullable: true),
+                    PHONE_NUMBER = table.Column<string>(nullable: true),
+                    PHONE_NUMBER_CONFIRMED = table.Column<bool>(nullable: false),
+                    TWO_FACTOR_ENABLED = table.Column<bool>(nullable: false),
+                    LOCK_OUT_END = table.Column<DateTimeOffset>(nullable: true),
+                    LOCK_OUT_ENABLED = table.Column<bool>(nullable: false),
+                    ACCESS_FAILED_COUNT = table.Column<int>(nullable: false),
                     USER_ID = table.Column<string>(nullable: false),
                     FIRST_NAME = table.Column<string>(maxLength: 200, nullable: false),
                     LAST_NAME = table.Column<string>(maxLength: 200, nullable: false),
@@ -283,14 +283,14 @@ namespace HiveStore.DataContext.Migrations
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
                 table: "AspNetUsers",
-                column: "NormalizedEmail");
+                column: "NORMALIZED_EMAIL");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
                 table: "AspNetUsers",
-                column: "NormalizedUserName",
+                column: "NORMALIZED_USER_NAME",
                 unique: true,
-                filter: "[NormalizedUserName] IS NOT NULL");
+                filter: "[NORMALIZED_USER_NAME] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Order_USER_ID",

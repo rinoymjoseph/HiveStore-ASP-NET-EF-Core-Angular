@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ISubscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { AppSettings } from './app.settings';
 
 @Component({
@@ -9,7 +9,7 @@ import { AppSettings } from './app.settings';
 })
 export class AppComponent implements OnInit {
 
-  isLoginPageSub: ISubscription;
+  isLoginPageSub: Subscription;
   isLoginPage: boolean;
 
   constructor() {

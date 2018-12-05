@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
 import { BaseResponse } from '../models/base-response.model';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { RequestInfo } from '../models/request-info.model';
 import { AppSettings } from '../app.settings';
+import { throwError } from 'rxjs';
 
 @Injectable()
 export class BaseService {
@@ -52,7 +51,7 @@ export class BaseService {
       //  `body was: ${error.error}`);
     }
     // return an ErrorObservable with a user-facing error message
-    return new ErrorObservable(
+    return throwError(
       'Something bad happened; please try again later.');
   }
 }

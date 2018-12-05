@@ -25,7 +25,8 @@ namespace HiveStore.DataContext.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("USER_ID");
 
-                    b.Property<int>("AccessFailedCount");
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnName("ACCESS_FAILED_COUNT");
 
                     b.Property<string>("Address")
                         .HasColumnName("ADDRESS")
@@ -36,7 +37,8 @@ namespace HiveStore.DataContext.Migrations
                         .HasMaxLength(200);
 
                     b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
+                        .IsConcurrencyToken()
+                        .HasColumnName("CONCURRENCY_STAMP");
 
                     b.Property<string>("Country")
                         .HasColumnName("COUNTRY")
@@ -51,9 +53,11 @@ namespace HiveStore.DataContext.Migrations
                         .HasColumnName("CREATED_DATE");
 
                     b.Property<string>("Email")
+                        .HasColumnName("EMAIL")
                         .HasMaxLength(256);
 
-                    b.Property<bool>("EmailConfirmed");
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnName("EMAIL_CONFIRMED");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -68,9 +72,11 @@ namespace HiveStore.DataContext.Migrations
                         .HasColumnName("LAST_NAME")
                         .HasMaxLength(200);
 
-                    b.Property<bool>("LockoutEnabled");
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnName("LOCK_OUT_ENABLED");
 
-                    b.Property<DateTimeOffset?>("LockoutEnd");
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnName("LOCK_OUT_END");
 
                     b.Property<string>("ModifiedBy")
                         .IsRequired()
@@ -81,22 +87,30 @@ namespace HiveStore.DataContext.Migrations
                         .HasColumnName("MODIFIED_DATE");
 
                     b.Property<string>("NormalizedEmail")
+                        .HasColumnName("NORMALIZED_EMAIL")
                         .HasMaxLength(256);
 
                     b.Property<string>("NormalizedUserName")
+                        .HasColumnName("NORMALIZED_USER_NAME")
                         .HasMaxLength(256);
 
-                    b.Property<string>("PasswordHash");
+                    b.Property<string>("PasswordHash")
+                        .HasColumnName("PASSWORD_HASH");
 
-                    b.Property<string>("PhoneNumber");
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnName("PHONE_NUMBER");
 
-                    b.Property<bool>("PhoneNumberConfirmed");
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnName("PHONE_NUMBER_CONFIRMED");
 
-                    b.Property<string>("SecurityStamp");
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnName("SECURITY_STAMP");
 
-                    b.Property<bool>("TwoFactorEnabled");
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnName("TWO_FACTOR_ENABLED");
 
                     b.Property<string>("UserName")
+                        .HasColumnName("USER_NAME")
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
@@ -107,7 +121,7 @@ namespace HiveStore.DataContext.Migrations
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
                         .HasName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+                        .HasFilter("[NORMALIZED_USER_NAME] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
                 });

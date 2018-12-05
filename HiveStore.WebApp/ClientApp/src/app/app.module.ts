@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
   MatSelectModule,
+  MatAutocompleteModule,
   MatButtonModule,
   MatInputModule,
   MatCheckboxModule,
@@ -50,6 +51,7 @@ import { AccountService } from './services/account.service';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatSelectModule,
+    MatAutocompleteModule,
     MatButtonModule,
     MatInputModule,
     MatCheckboxModule,
