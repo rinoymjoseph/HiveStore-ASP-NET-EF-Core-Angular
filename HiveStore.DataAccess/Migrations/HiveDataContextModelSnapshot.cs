@@ -15,7 +15,7 @@ namespace HiveStore.DataContext.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
+                .HasAnnotation("ProductVersion", "2.2.0-rtm-35687")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -23,7 +23,7 @@ namespace HiveStore.DataContext.Migrations
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("USER_ID");
+                        .HasColumnName("ID");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnName("ACCESS_FAILED_COUNT");
@@ -123,14 +123,14 @@ namespace HiveStore.DataContext.Migrations
                         .HasName("UserNameIndex")
                         .HasFilter("[NORMALIZED_USER_NAME] IS NOT NULL");
 
-                    b.ToTable("AspNetUsers");
+                    b.ToTable("USER","HIVE");
                 });
 
             modelBuilder.Entity("HiveStore.Entity.Order.OrderDetailsEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("ORDER_DETAILS_ID")
+                        .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CreatedBy")
@@ -181,14 +181,14 @@ namespace HiveStore.DataContext.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderDetails","hive");
+                    b.ToTable("ORDER_DETAILS","HIVE");
                 });
 
             modelBuilder.Entity("HiveStore.Entity.Order.OrderEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("ORDER_ID")
+                        .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CreatedBy")
@@ -229,14 +229,14 @@ namespace HiveStore.DataContext.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Order","hive");
+                    b.ToTable("ORDER","HIVE");
                 });
 
             modelBuilder.Entity("HiveStore.Entity.Product.ProductEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("PRODUCT_ID")
+                        .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CreatedBy")
@@ -274,21 +274,50 @@ namespace HiveStore.DataContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Product","hive");
+                    b.ToTable("PRODUCT","HIVE");
+                });
+
+            modelBuilder.Entity("HiveStore.Entity.Session.SessionEntity", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
+                        .HasMaxLength(449);
+
+                    b.Property<DateTimeOffset?>("AbsoluteExpiration")
+                        .HasColumnName("AbsoluteExpiration");
+
+                    b.Property<DateTimeOffset>("ExpiresAtTime")
+                        .HasColumnName("ExpiresAtTime");
+
+                    b.Property<long?>("SlidingExpirationInSeconds")
+                        .HasColumnName("SlidingExpirationInSeconds");
+
+                    b.Property<byte[]>("Value")
+                        .IsRequired()
+                        .HasColumnName("Value");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("USER_SESSION","HIVE");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ID");
 
                     b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
+                        .IsConcurrencyToken()
+                        .HasColumnName("CONCURRENCY_STAMP");
 
                     b.Property<string>("Name")
+                        .HasColumnName("NAME")
                         .HasMaxLength(256);
 
                     b.Property<string>("NormalizedName")
+                        .HasColumnName("NORMALIZED_NAME")
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
@@ -296,95 +325,113 @@ namespace HiveStore.DataContext.Migrations
                     b.HasIndex("NormalizedName")
                         .IsUnique()
                         .HasName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
+                        .HasFilter("[NORMALIZED_NAME] IS NOT NULL");
 
-                    b.ToTable("AspNetRoles");
+                    b.ToTable("ROLE","HIVE");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ClaimType");
+                    b.Property<string>("ClaimType")
+                        .HasColumnName("CLAIM_TYPE");
 
-                    b.Property<string>("ClaimValue");
+                    b.Property<string>("ClaimValue")
+                        .HasColumnName("CLAIM_VALUE");
 
                     b.Property<string>("RoleId")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasColumnName("ROLE_ID");
 
                     b.HasKey("Id");
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims");
+                    b.ToTable("ROLE_CLAIM","HIVE");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ClaimType");
+                    b.Property<string>("ClaimType")
+                        .HasColumnName("CLAIM_TYPE");
 
-                    b.Property<string>("ClaimValue");
+                    b.Property<string>("ClaimValue")
+                        .HasColumnName("CLAIM_VALUE");
 
                     b.Property<string>("UserId")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasColumnName("USER_ID");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims");
+                    b.ToTable("USER_CLAIM","HIVE");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.Property<string>("LoginProvider");
+                    b.Property<string>("LoginProvider")
+                        .HasColumnName("LOGIN_PROVIDER");
 
-                    b.Property<string>("ProviderKey");
+                    b.Property<string>("ProviderKey")
+                        .HasColumnName("PROVIDER_KEY");
 
-                    b.Property<string>("ProviderDisplayName");
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnName("PROVIDER_DISPLAY_NAME");
 
                     b.Property<string>("UserId")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasColumnName("USER_ID");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins");
+                    b.ToTable("USER_LOGIN","HIVE");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.Property<string>("UserId");
+                    b.Property<string>("UserId")
+                        .HasColumnName("USER_ID");
 
-                    b.Property<string>("RoleId");
+                    b.Property<string>("RoleId")
+                        .HasColumnName("ROLE_ID");
 
                     b.HasKey("UserId", "RoleId");
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles");
+                    b.ToTable("USER_ROLE","HIVE");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.Property<string>("UserId");
+                    b.Property<string>("UserId")
+                        .HasColumnName("USER_ID");
 
-                    b.Property<string>("LoginProvider");
+                    b.Property<string>("LoginProvider")
+                        .HasColumnName("LOGIN_PROVIDER");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .HasColumnName("NAME");
 
-                    b.Property<string>("Value");
+                    b.Property<string>("Value")
+                        .HasColumnName("VALUE");
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens");
+                    b.ToTable("USER_TOKEN","HIVE");
                 });
 
             modelBuilder.Entity("HiveStore.Entity.Order.OrderDetailsEntity", b =>

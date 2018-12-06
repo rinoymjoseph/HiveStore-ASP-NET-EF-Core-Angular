@@ -11,8 +11,8 @@ namespace HiveStore.DataAccess.Configuration.Order
     {
         public void Configure(EntityTypeBuilder<OrderDetailsEntity> builder)
         {
-            builder.ToTable("OrderDetails", "hive");
-            builder.Property(p => p.Id).HasColumnName("ORDER_DETAILS_ID");
+            builder.ToTable("ORDER_DETAILS", "HIVE");
+            builder.Property(p => p.Id).HasColumnName("ID");
             builder.Property(p => p.OrderId).HasColumnName("ORDER_ID");
             builder.Property(p => p.ProductId).HasColumnName("PRODUCT_ID");
             builder.Property(p => p.UnitPrice).HasColumnName("UNIT_PRICE").HasColumnType("decimal(7,2)");

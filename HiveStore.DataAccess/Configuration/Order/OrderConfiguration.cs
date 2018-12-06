@@ -11,9 +11,9 @@ namespace HiveStore.DataAccess.Configuration.Order
     {
         public void Configure(EntityTypeBuilder<OrderEntity> builder)
         {
-            builder.ToTable("Order", "hive");
+            builder.ToTable("ORDER", "HIVE");
 
-            builder.Property(p => p.Id).HasColumnName("ORDER_ID");
+            builder.Property(p => p.Id).HasColumnName("ID");
             builder.Property(p => p.UserId).HasColumnName("USER_ID");
             builder.Property(p => p.RequiredDate).HasColumnName("REQUIRED_DATE");
             builder.Property(p => p.ShipAddress).HasColumnName("SHIP_ADDRESS");

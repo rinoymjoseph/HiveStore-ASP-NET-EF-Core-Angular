@@ -64,8 +64,8 @@ namespace HiveStore.Extension
             services.AddDistributedSqlServerCache(options =>
             {
                 options.ConnectionString = configuration.GetConnectionString("DefaultConnection");
-                options.SchemaName = "dbo";
-                options.TableName = "SQLSessions";
+                options.SchemaName = "HIVE";
+                options.TableName = "USER_SESSION";
             });
         }
 

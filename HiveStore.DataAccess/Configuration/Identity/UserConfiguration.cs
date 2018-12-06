@@ -9,8 +9,8 @@ namespace HiveStore.DataContext.Configuration.Identity
     {
         public void Configure(EntityTypeBuilder<UserEntity> builder)
         {
-            //builder.ToTable("User", "hive");
-            builder.Property(p => p.Id).HasColumnName("USER_ID");
+            builder.ToTable("USER", "HIVE");
+            builder.Property(p => p.Id).HasColumnName("ID");
             builder.Property(p => p.UserName).HasColumnName("USER_NAME");
             builder.Property(p => p.NormalizedUserName).HasColumnName("NORMALIZED_USER_NAME");
             builder.Property(p => p.Email).HasColumnName("EMAIL");
