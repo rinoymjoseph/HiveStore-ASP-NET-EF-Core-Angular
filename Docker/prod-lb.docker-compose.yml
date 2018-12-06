@@ -36,6 +36,7 @@ services:
     networks: 
       - hive-network
     depends_on:
+      - hivewebapp1
       - hivestoredb
       - redisdb
 
@@ -48,6 +49,7 @@ services:
     networks: 
       - hive-network
     depends_on:
+      - hivewebapp2
       - hivestoredb
       - redisdb
   
