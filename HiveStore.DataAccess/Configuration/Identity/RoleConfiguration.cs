@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using HiveStore.Entity.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace HiveStore.DataContext.Configuration.Identity
 {
-    public class RoleConfiguration<TEntity> : IEntityTypeConfiguration<IdentityRole>
+    public class RoleConfiguration<TEntity> : IEntityTypeConfiguration<RoleEntity>
     {
-        public void Configure(EntityTypeBuilder<IdentityRole> builder)
+        public void Configure(EntityTypeBuilder<RoleEntity> builder)
         {
             builder.ToTable("ROLE", "HIVE");
             builder.Property(p => p.Id).HasColumnName("ID");

@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace HiveStore.DataContext.Configuration.Identity
 {
-    public class UserLoginConfiguration<TEntity> : IEntityTypeConfiguration<IdentityUserLogin<string>>
+    public class UserLoginConfiguration<TEntity> : IEntityTypeConfiguration<IdentityUserLogin<int>>
     {
-        public void Configure(EntityTypeBuilder<IdentityUserLogin<string>> builder)
+        public void Configure(EntityTypeBuilder<IdentityUserLogin<int>> builder)
         {
             builder.ToTable("USER_LOGIN", "HIVE");
             builder.Property(p => p.LoginProvider).HasColumnName("LOGIN_PROVIDER");

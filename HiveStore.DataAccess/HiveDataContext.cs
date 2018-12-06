@@ -12,7 +12,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HiveStore.DataAccess
 {
-    public class HiveDataContext : IdentityDbContext<UserEntity>
+    //public class HiveDataContext : IdentityDbContext<UserEntity>
+    public class HiveDataContext : IdentityDbContext<UserEntity, RoleEntity, int>
     {
         public DbSet<ProductEntity> Products { get; set; }
         public DbSet<OrderEntity> Orders { get; set; }
@@ -35,12 +36,12 @@ namespace HiveStore.DataAccess
             // Customizations must go after base.OnModelCreating(builder)
 
             builder.ApplyConfiguration(new UserConfiguration<UserEntity>());
-            builder.ApplyConfiguration(new RoleConfiguration<IdentityRole>());
-            builder.ApplyConfiguration(new UserRoleConfiguration<IdentityUserRole<string>>());
-            builder.ApplyConfiguration(new RoleClaimConfiguration<IdentityRoleClaim<string>>());
-            builder.ApplyConfiguration(new UserClaimConfiguration<IdentityUserClaim<string>>());
-            builder.ApplyConfiguration(new UserLoginConfiguration<IdentityUserLogin<string>>());
-            builder.ApplyConfiguration(new UserTokenConfiguration<IdentityUserToken<string>>());
+            builder.ApplyConfiguration(new RoleConfiguration<RoleEntity>());
+            builder.ApplyConfiguration(new UserRoleConfiguration<IdentityUserRole<int>>());
+            builder.ApplyConfiguration(new RoleClaimConfiguration<IdentityRoleClaim<int>>());
+            builder.ApplyConfiguration(new UserClaimConfiguration<IdentityUserClaim<int>>());
+            builder.ApplyConfiguration(new UserLoginConfiguration<IdentityUserLogin<int>>());
+            builder.ApplyConfiguration(new UserTokenConfiguration<IdentityUserToken<int>>());
             builder.ApplyConfiguration(new SessionConfiguration<SessionEntity>());
 
             builder.ApplyConfiguration(new ProductConfiguration<ProductEntity>());

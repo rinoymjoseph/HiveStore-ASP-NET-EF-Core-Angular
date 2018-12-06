@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HiveStore.DTO;
+using HiveStore.Entity.Identity;
 using HiveStore.IHelper;
 using HiveStore.IService.Identity;
 using HiveStore.Service.Identity;
@@ -29,7 +30,7 @@ namespace HiveStore.WebApp.Controllers
         [HiveStoreAuthorize]
         [Route("SaveRole")]
         [HttpPost]
-        public async Task<IActionResult> SaveRole([FromBody] IdentityRole identityRole)
+        public async Task<IActionResult> SaveRole([FromBody] RoleEntity identityRole)
         {
             BaseResponseDTO baseResponseDTO = new BaseResponseDTO();
             _requestInfoHelper.BindRequestInfo(HttpContext, baseResponseDTO);
@@ -53,7 +54,7 @@ namespace HiveStore.WebApp.Controllers
         public IActionResult GetAllRoles()
         {
             BaseResponseDTO baseResponseDTO = new BaseResponseDTO();
-            List<IdentityRole> identityRoleList;
+            List<RoleEntity> identityRoleList;
             _requestInfoHelper.BindRequestInfo(HttpContext, baseResponseDTO);
 
             try

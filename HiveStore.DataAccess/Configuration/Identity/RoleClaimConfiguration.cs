@@ -5,9 +5,9 @@ using System;
 
 namespace HiveStore.DataContext.Configuration.Identity
 {
-    public class RoleClaimConfiguration<TEntity> : IEntityTypeConfiguration<IdentityRoleClaim<string>>
+    public class RoleClaimConfiguration<TEntity> : IEntityTypeConfiguration<IdentityRoleClaim<int>>
     {
-        public void Configure(EntityTypeBuilder<IdentityRoleClaim<string>> builder)
+        public void Configure(EntityTypeBuilder<IdentityRoleClaim<int>> builder)
         {
             builder.ToTable("ROLE_CLAIM", "HIVE");
             builder.Property(p => p.Id).HasColumnName("ID");

@@ -37,7 +37,8 @@ namespace HiveStore.DataContext.Migrations
                 schema: "HIVE",
                 columns: table => new
                 {
-                    ID = table.Column<string>(nullable: false),
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     NAME = table.Column<string>(maxLength: 256, nullable: true),
                     NORMALIZED_NAME = table.Column<string>(maxLength: 256, nullable: true),
                     CONCURRENCY_STAMP = table.Column<string>(nullable: true)
@@ -52,7 +53,8 @@ namespace HiveStore.DataContext.Migrations
                 schema: "HIVE",
                 columns: table => new
                 {
-                    ID = table.Column<string>(nullable: false),
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     USER_NAME = table.Column<string>(maxLength: 256, nullable: true),
                     NORMALIZED_USER_NAME = table.Column<string>(maxLength: 256, nullable: true),
                     EMAIL = table.Column<string>(maxLength: 256, nullable: true),
@@ -106,7 +108,7 @@ namespace HiveStore.DataContext.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ROLE_ID = table.Column<string>(nullable: false),
+                    ROLE_ID = table.Column<int>(nullable: false),
                     CLAIM_TYPE = table.Column<string>(nullable: true),
                     CLAIM_VALUE = table.Column<string>(nullable: true)
                 },
@@ -135,7 +137,7 @@ namespace HiveStore.DataContext.Migrations
                     MODIFIED_BY = table.Column<string>(maxLength: 50, nullable: false),
                     IS_DELETED = table.Column<bool>(nullable: false),
                     RTS = table.Column<byte[]>(rowVersion: true, nullable: false),
-                    USER_ID = table.Column<string>(nullable: true),
+                    USER_ID = table.Column<int>(nullable: false),
                     REQUIRED_DATE = table.Column<DateTime>(nullable: false),
                     SHIP_ADDRESS = table.Column<string>(nullable: true)
                 },
@@ -148,7 +150,7 @@ namespace HiveStore.DataContext.Migrations
                         principalSchema: "HIVE",
                         principalTable: "USER",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -158,7 +160,7 @@ namespace HiveStore.DataContext.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    USER_ID = table.Column<string>(nullable: false),
+                    USER_ID = table.Column<int>(nullable: false),
                     CLAIM_TYPE = table.Column<string>(nullable: true),
                     CLAIM_VALUE = table.Column<string>(nullable: true)
                 },
@@ -182,7 +184,7 @@ namespace HiveStore.DataContext.Migrations
                     LOGIN_PROVIDER = table.Column<string>(nullable: false),
                     PROVIDER_KEY = table.Column<string>(nullable: false),
                     PROVIDER_DISPLAY_NAME = table.Column<string>(nullable: true),
-                    USER_ID = table.Column<string>(nullable: false)
+                    USER_ID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -201,8 +203,8 @@ namespace HiveStore.DataContext.Migrations
                 schema: "HIVE",
                 columns: table => new
                 {
-                    USER_ID = table.Column<string>(nullable: false),
-                    ROLE_ID = table.Column<string>(nullable: false)
+                    USER_ID = table.Column<int>(nullable: false),
+                    ROLE_ID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -228,7 +230,7 @@ namespace HiveStore.DataContext.Migrations
                 schema: "HIVE",
                 columns: table => new
                 {
-                    USER_ID = table.Column<string>(nullable: false),
+                    USER_ID = table.Column<int>(nullable: false),
                     LOGIN_PROVIDER = table.Column<string>(nullable: false),
                     NAME = table.Column<string>(nullable: false),
                     VALUE = table.Column<string>(nullable: true)

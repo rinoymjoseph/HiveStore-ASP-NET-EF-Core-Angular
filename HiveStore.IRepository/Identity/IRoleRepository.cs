@@ -1,13 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
+﻿using HiveStore.Entity.Identity;
 using System.Collections.Generic;
-using System.Text;
 
 namespace HiveStore.IRepository.Identity
 {
     public interface IRoleRepository
     {
-        List<IdentityRole> GetAllRoles();
-        IdentityRole GetRoleById(string userId);
+        List<RoleEntity> GetAllRoles();
+        RoleEntity GetRoleById(int userId);
     }
 }

@@ -73,7 +73,7 @@ namespace HiveStore.Extension
         {
             int loginExpireTimeSpan = Int32.Parse(configuration?.GetSection("AppSettings")?["LoginExpireTimeSpan"]);
 
-            services.AddIdentity<UserEntity, IdentityRole>()
+            services.AddIdentity<UserEntity, RoleEntity>()
                 .AddEntityFrameworkStores<HiveDataContext>()
                 .AddDefaultTokenProviders();
 

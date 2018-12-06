@@ -13,10 +13,10 @@ namespace HiveStore.Service.Identity
     {
         private readonly IUserRepository _userRepository;
         private readonly UserManager<UserEntity> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly RoleManager<RoleEntity> _roleManager;
 
         public UserService(IUserRepository userRepository, UserManager<UserEntity> userManager,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<RoleEntity> roleManager)
         {
             _userRepository = userRepository;
             _userManager = userManager;
@@ -74,7 +74,7 @@ namespace HiveStore.Service.Identity
                 _userEntity.CreatedDate = DateTime.Now;
                 _userEntity.ModifiedDate = DateTime.Now;
                 var result_user = await _userManager.CreateAsync(_userEntity, "admin");
-                IdentityRole identityRole = new IdentityRole();
+                RoleEntity identityRole = new RoleEntity();
                 identityRole.Name = "Admin";
                 var result_role = await _roleManager.CreateAsync(identityRole);
                 var result = await _userManager.AddToRoleAsync(_userEntity, "Admin");

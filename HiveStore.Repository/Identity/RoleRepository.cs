@@ -1,4 +1,5 @@
 ﻿using HiveStore.DataAccess;
+using HiveStore.Entity.Identity;
 using HiveStore.IRepository.Identity;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -16,14 +17,14 @@ namespace HiveStore.Repository.Identity
             _hiveDataContext = hiveDataContext;
         }
 
-        public List<IdentityRole> GetAllRoles()
+        public List<RoleEntity> GetAllRoles()
         {
-            return _hiveDataContext.Set<IdentityRole>().ToList();
+            return _hiveDataContext.Set<RoleEntity>().ToList();
         }
 
-        public IdentityRole GetRoleById(string roleId)
+        public RoleEntity GetRoleById(int roleId)
         {
-            return _hiveDataContext.Set<IdentityRole>().FirstOrDefault(x => x.Id == roleId);
+            return _hiveDataContext.Set<RoleEntity>().FirstOrDefault(x => x.Id == roleId);
         }
     }
 }

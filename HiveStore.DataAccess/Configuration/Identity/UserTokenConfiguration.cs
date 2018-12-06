@@ -5,9 +5,9 @@ using System;
 
 namespace HiveStore.DataContext.Configuration.Identity
 {
-    public class UserTokenConfiguration<TEntity> : IEntityTypeConfiguration<IdentityUserToken<string>>
+    public class UserTokenConfiguration<TEntity> : IEntityTypeConfiguration<IdentityUserToken<int>>
     {
-        public void Configure(EntityTypeBuilder<IdentityUserToken<string>> builder)
+        public void Configure(EntityTypeBuilder<IdentityUserToken<int>> builder)
         {
             builder.ToTable("USER_TOKEN", "HIVE");
             builder.Property(p => p.UserId).HasColumnName("USER_ID");

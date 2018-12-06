@@ -1,9 +1,9 @@
-﻿using HiveStore.IRepository.Identity;
+﻿using HiveStore.Entity.Identity;
+using HiveStore.IRepository.Identity;
 using HiveStore.IService.Identity;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace HiveStore.Service.Identity
@@ -11,15 +11,15 @@ namespace HiveStore.Service.Identity
     public class RoleService : IRoleService
     {
         private readonly IRoleRepository _roleRepository;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly RoleManager<RoleEntity> _roleManager;
 
-        public RoleService(IRoleRepository roleRepository, RoleManager<IdentityRole> roleManager) 
+        public RoleService(IRoleRepository roleRepository, RoleManager<RoleEntity> roleManager) 
         {
             _roleRepository = roleRepository;
             _roleManager = roleManager;
         }
 
-        public async Task<IdentityResult> SaveRole(IdentityRole identityRole)
+        public async Task<IdentityResult> SaveRole(RoleEntity identityRole)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace HiveStore.Service.Identity
             }
         }
 
-        public List<IdentityRole> GetAllRoles()
+        public List<RoleEntity> GetAllRoles()
         {
             return _roleRepository.GetAllRoles();
         }

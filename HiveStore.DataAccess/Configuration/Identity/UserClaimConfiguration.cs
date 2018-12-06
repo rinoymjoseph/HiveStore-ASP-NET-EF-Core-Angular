@@ -7,9 +7,9 @@ using System.Text;
 
 namespace HiveStore.DataContext.Configuration.Identity
 {
-    public class UserClaimConfiguration<TEntity> : IEntityTypeConfiguration<IdentityUserClaim<string>>
+    public class UserClaimConfiguration<TEntity> : IEntityTypeConfiguration<IdentityUserClaim<int>>
     {
-        public void Configure(EntityTypeBuilder<IdentityUserClaim<string>> builder)
+        public void Configure(EntityTypeBuilder<IdentityUserClaim<int>> builder)
         {
             builder.ToTable("USER_CLAIM", "HIVE");
             builder.Property(p => p.Id).HasColumnName("ID");

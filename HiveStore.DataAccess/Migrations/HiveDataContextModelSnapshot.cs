@@ -19,11 +19,41 @@ namespace HiveStore.DataContext.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("HiveStore.Entity.Identity.RoleEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ID")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnName("CONCURRENCY_STAMP");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("NAME")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedName")
+                        .HasColumnName("NORMALIZED_NAME")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasName("RoleNameIndex")
+                        .HasFilter("[NORMALIZED_NAME] IS NOT NULL");
+
+                    b.ToTable("ROLE","HIVE");
+                });
+
             modelBuilder.Entity("HiveStore.Entity.Identity.UserEntity", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("ID");
+                        .HasColumnName("ID")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnName("ACCESS_FAILED_COUNT");
@@ -222,7 +252,7 @@ namespace HiveStore.DataContext.Migrations
                     b.Property<string>("ShipAddress")
                         .HasColumnName("SHIP_ADDRESS");
 
-                    b.Property<string>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnName("USER_ID");
 
                     b.HasKey("Id");
@@ -302,35 +332,7 @@ namespace HiveStore.DataContext.Migrations
                     b.ToTable("USER_SESSION","HIVE");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("ID");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnName("CONCURRENCY_STAMP");
-
-                    b.Property<string>("Name")
-                        .HasColumnName("NAME")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("NormalizedName")
-                        .HasColumnName("NORMALIZED_NAME")
-                        .HasMaxLength(256);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasName("RoleNameIndex")
-                        .HasFilter("[NORMALIZED_NAME] IS NOT NULL");
-
-                    b.ToTable("ROLE","HIVE");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -343,8 +345,7 @@ namespace HiveStore.DataContext.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnName("CLAIM_VALUE");
 
-                    b.Property<string>("RoleId")
-                        .IsRequired()
+                    b.Property<int>("RoleId")
                         .HasColumnName("ROLE_ID");
 
                     b.HasKey("Id");
@@ -354,7 +355,7 @@ namespace HiveStore.DataContext.Migrations
                     b.ToTable("ROLE_CLAIM","HIVE");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -367,8 +368,7 @@ namespace HiveStore.DataContext.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnName("CLAIM_VALUE");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
+                    b.Property<int>("UserId")
                         .HasColumnName("USER_ID");
 
                     b.HasKey("Id");
@@ -378,7 +378,7 @@ namespace HiveStore.DataContext.Migrations
                     b.ToTable("USER_CLAIM","HIVE");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
                     b.Property<string>("LoginProvider")
                         .HasColumnName("LOGIN_PROVIDER");
@@ -389,8 +389,7 @@ namespace HiveStore.DataContext.Migrations
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnName("PROVIDER_DISPLAY_NAME");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
+                    b.Property<int>("UserId")
                         .HasColumnName("USER_ID");
 
                     b.HasKey("LoginProvider", "ProviderKey");
@@ -400,12 +399,12 @@ namespace HiveStore.DataContext.Migrations
                     b.ToTable("USER_LOGIN","HIVE");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
                 {
-                    b.Property<string>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnName("USER_ID");
 
-                    b.Property<string>("RoleId")
+                    b.Property<int>("RoleId")
                         .HasColumnName("ROLE_ID");
 
                     b.HasKey("UserId", "RoleId");
@@ -415,9 +414,9 @@ namespace HiveStore.DataContext.Migrations
                     b.ToTable("USER_ROLE","HIVE");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.Property<string>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnName("USER_ID");
 
                     b.Property<string>("LoginProvider")
@@ -451,18 +450,19 @@ namespace HiveStore.DataContext.Migrations
                 {
                     b.HasOne("HiveStore.Entity.Identity.UserEntity", "User")
                         .WithMany("OrderEntities")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
+                    b.HasOne("HiveStore.Entity.Identity.RoleEntity")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
                     b.HasOne("HiveStore.Entity.Identity.UserEntity")
                         .WithMany()
@@ -470,7 +470,7 @@ namespace HiveStore.DataContext.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
                     b.HasOne("HiveStore.Entity.Identity.UserEntity")
                         .WithMany()
@@ -478,9 +478,9 @@ namespace HiveStore.DataContext.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
+                    b.HasOne("HiveStore.Entity.Identity.RoleEntity")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -491,7 +491,7 @@ namespace HiveStore.DataContext.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
                     b.HasOne("HiveStore.Entity.Identity.UserEntity")
                         .WithMany()
