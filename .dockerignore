@@ -7,15 +7,12 @@
 docker-compose.yml
 *.docker-compose.yml
 Docker
-HiveStore.AzureResourceGroup
-HiveStore.Database
-HiveStore.Deploy
 HiveStore.DTO/bin
 HiveStore.DTO/obj
 HiveStore.Entity/bin
 HiveStore.Entity/obj
-HiveStore.DataAccess/bin
-HiveStore.DataAccess/obj
+HiveStore.DataContext/bin
+HiveStore.DataContext/obj
 HiveStore.IRepository/bin
 HiveStore.IRepository/obj
 HiveStore.Repository/bin
