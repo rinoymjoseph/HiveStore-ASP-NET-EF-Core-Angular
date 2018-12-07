@@ -7,10 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiveStore.Entity", "HiveSto
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiveStore.DataContext", "HiveStore.DataAccess\HiveStore.DataContext.csproj", "{8A19E6BA-DA7A-4AA1-8A7D-751238325375}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "HiveStore.Database", "HiveStore.Database\HiveStore.Database.sqlproj", "{18F364CC-AD7E-4634-BFC4-149A6C3FC042}"
-EndProject
-Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "HiveStore.AzureResourceGroup", "HiveStore.AzureResourceGroup\HiveStore.AzureResourceGroup.deployproj", "{0A1E9CE2-44DB-4D09-9D1D-8413B8700C10}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiveStore.IRepository", "HiveStore.IRepository\HiveStore.IRepository.csproj", "{F30B5750-E30A-4697-A1C5-DA731419D603}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiveStore.Repository", "HiveStore.Repository\HiveStore.Repository.csproj", "{8C013634-A01D-4B81-9773-BDB47D68700D}"
@@ -23,17 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiveStore.DTO", "HiveStore.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiveStore.WebApp", "HiveStore.WebApp\HiveStore.WebApp.csproj", "{0476B226-98C3-47B3-AE97-DF7DA1D0384B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1F71F5D7-9749-4BD3-86E1-952A27A15598}"
-	ProjectSection(SolutionItems) = preProject
-		.dockerignore = .dockerignore
-		Dockerfile = Dockerfile
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiveStore.DI", "HiveStore.DI\HiveStore.DI.csproj", "{789D440F-1238-462A-AE06-AA7129386EF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiveStore.IHelper", "HiveStore.IHelper\HiveStore.IHelper.csproj", "{42719A26-AD12-46A5-AA8B-1B6F890B7994}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiveStore.IHelper", "HiveStore.IHelper\HiveStore.IHelper.csproj", "{42719A26-AD12-46A5-AA8B-1B6F890B7994}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiveStore.Helper", "HiveStore.Helper\HiveStore.Helper.csproj", "{FA7F1EBD-563E-45BD-B6C8-10B472E552DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiveStore.Helper", "HiveStore.Helper\HiveStore.Helper.csproj", "{FA7F1EBD-563E-45BD-B6C8-10B472E552DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,16 +39,6 @@ Global
 		{8A19E6BA-DA7A-4AA1-8A7D-751238325375}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A19E6BA-DA7A-4AA1-8A7D-751238325375}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A19E6BA-DA7A-4AA1-8A7D-751238325375}.Release|Any CPU.Build.0 = Release|Any CPU
-		{18F364CC-AD7E-4634-BFC4-149A6C3FC042}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18F364CC-AD7E-4634-BFC4-149A6C3FC042}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18F364CC-AD7E-4634-BFC4-149A6C3FC042}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{18F364CC-AD7E-4634-BFC4-149A6C3FC042}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18F364CC-AD7E-4634-BFC4-149A6C3FC042}.Release|Any CPU.Build.0 = Release|Any CPU
-		{18F364CC-AD7E-4634-BFC4-149A6C3FC042}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{0A1E9CE2-44DB-4D09-9D1D-8413B8700C10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A1E9CE2-44DB-4D09-9D1D-8413B8700C10}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A1E9CE2-44DB-4D09-9D1D-8413B8700C10}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A1E9CE2-44DB-4D09-9D1D-8413B8700C10}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F30B5750-E30A-4697-A1C5-DA731419D603}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F30B5750-E30A-4697-A1C5-DA731419D603}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F30B5750-E30A-4697-A1C5-DA731419D603}.Release|Any CPU.ActiveCfg = Release|Any CPU
