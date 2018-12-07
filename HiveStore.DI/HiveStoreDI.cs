@@ -26,7 +26,7 @@ namespace HiveStore.Extension
         public static void Configure(this IServiceCollection services, IConfiguration configuration, IHostingEnvironment env)
         {
             ConfigureDBContexts(services, configuration);
-            ConfigureSession(services, configuration,env);
+            ConfigureSession(services, configuration, env);
             ConfigureIdentity(services, configuration);
             ConfigureRepositories(services);
             ConfigureServices(services);
